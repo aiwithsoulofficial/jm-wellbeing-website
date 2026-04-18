@@ -1,0 +1,2337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jacqui McGregor Wellbeing | Come home to yourself.</title>
+  <meta name="description" content="Counselling and coaching for women and young people navigating exhaustion, overwhelm, and the quiet weight of carrying too much for too long. Based in Australia.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================================
+       CSS VARIABLES
+    ============================================================ */
+    :root {
+      --walnut: #4A3728;
+      --cedar: #6B8F71;
+      --gold: #4A7A5A;
+      --linen: #F7F3ED;
+      --earth: #2D2418;
+      --drift: #D4C5A9;
+      --white: #ffffff;
+      --shadow-rest: 0 2px 16px rgba(45,36,24,0.06);
+      --shadow-hover: 0 6px 28px rgba(74,55,40,0.12);
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+      --max-w: 1440px;
+      --max-content: 1280px;
+    }
+
+    /* ============================================================
+       RESET & BASE
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 300;
+      color: var(--earth);
+      background: var(--linen);
+      overflow-x: hidden;
+      cursor: none;
+      -webkit-font-smoothing: antialiased;
+    }
+    @media (max-width: 768px) { body { cursor: auto; } }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+    input, textarea { font-family: inherit; }
+
+    /* ============================================================
+       TYPOGRAPHY UTILITIES
+    ============================================================ */
+    .font-heading { font-family: 'Cormorant Garamond', serif; }
+    .font-italic { font-style: italic; }
+    .text-gold { color: var(--gold); }
+    .text-cedar { color: var(--cedar); }
+    .text-walnut { color: var(--walnut); }
+    .label-small {
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 500;
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--cedar);
+    }
+
+    /* ============================================================
+       LAYOUT CONTAINERS
+    ============================================================ */
+    .container {
+      width: 100%;
+      max-width: var(--max-content);
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+    @media (max-width: 1024px) { .container { padding: 0 32px; } }
+    @media (max-width: 600px) { .container { padding: 0 24px; } }
+    @media (min-width: 1600px) { .container { padding: 0 64px; } }
+    @media (min-width: 2200px) { .container { padding: 0 80px; max-width: 1680px; } }
+
+    /* ============================================================
+       BRAND DIVIDERS
+    ============================================================ */
+    .brand-divider {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin: 0 auto;
+    }
+    .brand-divider .d-line {
+      flex: 1;
+      height: 1px;
+      background: var(--gold);
+      opacity: 0.6;
+    }
+    .brand-divider .d-sprig {
+      color: var(--gold);
+      font-size: 14px;
+      line-height: 1;
+      opacity: 0.85;
+    }
+    .brand-divider.center { justify-content: center; max-width: 320px; }
+    .brand-divider.full { max-width: 100%; }
+
+    /* ============================================================
+       AMBIENT ORB
+    ============================================================ */
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      animation: orbPulse 10s ease-in-out infinite;
+    }
+    .orb-gold {
+      background: radial-gradient(circle, rgba(196,168,126,0.18) 0%, transparent 70%);
+    }
+    .orb-cedar {
+      background: radial-gradient(circle, rgba(139,115,85,0.12) 0%, transparent 70%);
+    }
+    .orb-linen {
+      background: radial-gradient(circle, rgba(247,243,237,0.2) 0%, transparent 70%);
+    }
+    @keyframes orbPulse {
+      0%, 100% { transform: scale(1); opacity: 0.6; }
+      50% { transform: scale(1.3); opacity: 1; }
+    }
+
+    /* ============================================================
+       LOADING SCREEN
+    ============================================================ */
+    #loader {
+      position: fixed;
+      inset: 0;
+      background: var(--walnut);
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
+      transition: opacity 0.9s var(--ease), visibility 0.9s;
+    }
+    #loader.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    .loader-logo {
+      opacity: 0;
+      animation: loaderFadeIn 0.8s ease 0.3s forwards;
+      max-width: 240px;
+      width: 60vw;
+    }
+    .loader-bar-wrap {
+      width: 160px;
+      height: 1px;
+      background: rgba(196,168,126,0.2);
+      overflow: hidden;
+    }
+    .loader-bar {
+      height: 100%;
+      background: var(--gold);
+      width: 0;
+      animation: loaderBar 1.1s var(--ease) 0.6s forwards;
+    }
+    .loader-tagline {
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 300;
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--drift);
+      opacity: 0;
+      animation: loaderFadeIn 0.6s ease 1s forwards;
+    }
+    @keyframes loaderFadeIn { to { opacity: 1; } }
+    @keyframes loaderBar { to { width: 100%; } }
+
+    /* ============================================================
+       FILM GRAIN
+    ============================================================ */
+    #grain {
+      position: fixed;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      pointer-events: none;
+      z-index: 8000;
+      opacity: 0.032;
+      animation: grainShift 0.9s steps(1) infinite;
+    }
+    @keyframes grainShift {
+      0%   { transform: translate(0, 0); }
+      10%  { transform: translate(-2%, -3%); }
+      20%  { transform: translate(3%, 2%); }
+      30%  { transform: translate(-1%, 4%); }
+      40%  { transform: translate(4%, -1%); }
+      50%  { transform: translate(-3%, 1%); }
+      60%  { transform: translate(2%, 3%); }
+      70%  { transform: translate(-4%, -2%); }
+      80%  { transform: translate(1%, -4%); }
+      90%  { transform: translate(3%, -3%); }
+      100% { transform: translate(-2%, 2%); }
+    }
+
+    /* ============================================================
+       CUSTOM CURSOR
+    ============================================================ */
+    #cursor-dot {
+      position: fixed;
+      width: 8px;
+      height: 8px;
+      background: var(--gold);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 7999;
+      transform: translate(-50%, -50%);
+      transition: width 0.3s, height 0.3s, background 0.3s;
+    }
+    #cursor-ring {
+      position: fixed;
+      width: 32px;
+      height: 32px;
+      border: 1.5px solid var(--gold);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 7998;
+      transform: translate(-50%, -50%);
+      transition: width 0.3s, height 0.3s, opacity 0.3s;
+    }
+    body.cursor-hover #cursor-dot { width: 12px; height: 12px; }
+    body.cursor-hover #cursor-ring { width: 48px; height: 48px; opacity: 0.5; }
+    @media (max-width: 768px) {
+      #cursor-dot, #cursor-ring { display: none; }
+    }
+
+    /* ============================================================
+       NAVIGATION
+    ============================================================ */
+    #nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 6000;
+      padding: 22px 0;
+      transition: all 0.5s var(--ease);
+    }
+    #nav.scrolled {
+      background: rgba(247,243,237,0.96);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 1px 20px rgba(45,36,24,0.07);
+      padding: 14px 0;
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: var(--max-content);
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+    .nav-logo { flex-shrink: 0; }
+    .nav-logo .logo-dark { display: none; }
+    .nav-logo .logo-light { display: inline; }
+    #nav.scrolled .nav-logo .logo-light { display: none; }
+    #nav.scrolled .nav-logo .logo-dark { display: inline; }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 400;
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(247,243,237,0.88);
+      transition: color 0.3s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px; left: 0;
+      width: 0; height: 1px;
+      background: var(--gold);
+      transition: width 0.3s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links a:hover::after { width: 100%; }
+    #nav.scrolled .nav-links a { color: var(--earth); }
+    #nav.scrolled .nav-links a:hover { color: var(--cedar); }
+    .nav-cta {
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 500;
+      font-size: 0.73rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--earth);
+      background: var(--gold);
+      padding: 10px 22px;
+      border-radius: 4px;
+      transition: all 0.3s;
+    }
+    .nav-cta:hover { background: var(--cedar); color: var(--white); }
+    #nav.scrolled .nav-cta { background: var(--walnut); color: var(--linen); }
+    #nav.scrolled .nav-cta:hover { background: var(--earth); }
+
+    /* Hamburger */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 24px; height: 1.5px;
+      background: var(--linen);
+      transition: all 0.3s;
+    }
+    #nav.scrolled .nav-hamburger span { background: var(--earth); }
+
+    /* Mobile menu overlay */
+    #mobile-menu {
+      position: fixed;
+      inset: 0;
+      background: var(--walnut);
+      z-index: 5999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.4s var(--ease), visibility 0.4s;
+    }
+    #mobile-menu.open { opacity: 1; visibility: visible; }
+    .mobile-nav-links { list-style: none; text-align: center; display: flex; flex-direction: column; gap: 32px; }
+    .mobile-nav-links a {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: 2.4rem;
+      color: var(--linen);
+      letter-spacing: 0.04em;
+      transition: color 0.3s;
+    }
+    .mobile-nav-links a:hover { color: var(--gold); }
+    .mobile-cta {
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 500;
+      font-size: 0.78rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--earth);
+      background: var(--gold);
+      padding: 14px 32px;
+      border-radius: 4px;
+    }
+    .mobile-close {
+      position: absolute;
+      top: 24px; right: 32px;
+      font-size: 32px;
+      color: var(--drift);
+      cursor: pointer;
+      background: none;
+      border: none;
+      line-height: 1;
+    }
+
+    @media (max-width: 900px) {
+      .nav-links, .nav-cta { display: none; }
+      .nav-hamburger { display: flex; }
+    }
+    @media (max-width: 1024px) { .nav-inner { padding: 0 32px; } }
+    @media (max-width: 600px) { .nav-inner { padding: 0 24px; } }
+    @media (min-width: 2200px) {
+      .nav-inner { max-width: 1680px; }
+      .nav-logo img { height: 52px; }
+      .nav-links { gap: 56px; }
+      .nav-links a { font-size: 0.85rem; }
+    }
+
+    /* ============================================================
+       HERO
+    ============================================================ */
+    #hero {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        175deg,
+        rgba(45,36,24,0.72) 0%,
+        rgba(74,55,40,0.60) 50%,
+        rgba(45,36,24,0.75) 100%
+      );
+    }
+    .hero-vignette {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, transparent 50%, rgba(22,16,9,0.5) 100%);
+    }
+
+    /* Ghost watermark */
+    .hero-ghost {
+      position: absolute;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: 22vw;
+      color: rgba(247,243,237,0.028);
+      white-space: nowrap;
+      bottom: -4vw;
+      right: -2vw;
+      line-height: 1;
+      pointer-events: none;
+      z-index: 1;
+      letter-spacing: -0.03em;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+    }
+    .hero-inner {
+      max-width: var(--max-content);
+      margin: 0 auto;
+      padding: 0 48px;
+      padding-top: 80px;
+    }
+    .hero-role {
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 400;
+      font-size: 0.72rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--drift);
+      margin-bottom: 24px;
+      opacity: 0;
+      animation: heroBits 0.6s ease 2.0s forwards;
+    }
+    .hero-title-wrap {
+      margin-bottom: 28px;
+    }
+    .title-line {
+      display: block;
+      overflow: hidden;
+      line-height: 0.92;
+    }
+    .title-inner {
+      display: block;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(80px, 13vw, 186px);
+      color: var(--linen);
+      letter-spacing: -0.02em;
+      transform: translateY(110%);
+    }
+    .title-line:nth-child(1) .title-inner {
+      animation: titleReveal 1.1s var(--ease) 1.7s forwards;
+    }
+    .title-line:nth-child(2) .title-inner {
+      animation: titleReveal 1.1s var(--ease) 1.88s forwards;
+      color: var(--drift);
+    }
+    .hero-divider {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 24px 0;
+      max-width: 300px;
+      opacity: 0;
+      animation: heroBits 0.6s ease 2.2s forwards;
+    }
+    .hero-divider .d-line {
+      flex: 1;
+      height: 1px;
+      background: var(--gold);
+      opacity: 0.55;
+    }
+    .hero-divider .d-diamond { color: var(--gold); font-size: 10px; }
+    .hero-tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-style: italic;
+      font-size: clamp(1.4rem, 2.5vw, 2.2rem);
+      color: var(--linen);
+      margin-bottom: 40px;
+      opacity: 0;
+      animation: heroBits 0.6s ease 2.35s forwards;
+    }
+    .hero-cta-wrap {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: heroBits 0.6s ease 2.5s forwards;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 500;
+      font-size: 0.76rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--earth);
+      background: var(--gold);
+      padding: 15px 32px;
+      border-radius: 4px;
+      transition: all 0.35s var(--ease);
+    }
+    .btn-primary:hover { background: var(--cedar); color: var(--white); transform: translateY(-2px); }
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 400;
+      font-size: 0.76rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--linen);
+      border: 1px solid rgba(212,197,169,0.5);
+      padding: 15px 32px;
+      border-radius: 4px;
+      transition: all 0.35s var(--ease);
+    }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+
+    /* Scroll indicator */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 40px;
+      right: 48px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      opacity: 0;
+      animation: heroBits 0.6s ease 2.8s forwards;
+    }
+    .scroll-indicator span {
+      font-family: 'Work Sans', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--drift);
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+    }
+    .scroll-line {
+      width: 1px;
+      height: 48px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+      animation: scrollPulse 1.8s ease-in-out infinite;
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.3; transform: scaleY(1); }
+      50% { opacity: 1; transform: scaleY(0.6); }
+    }
+
+    /* Hero orbs */
+    .hero-orb-1 {
+      width: 500px; height: 500px;
+      top: -100px; right: 10%;
+      animation-duration: 12s;
+    }
+    .hero-orb-2 {
+      width: 350px; height: 350px;
+      bottom: 0; left: 30%;
+      animation-duration: 9s;
+      animation-delay: -4s;
+    }
+
+    @keyframes titleReveal { to { transform: translateY(0); } }
+    @keyframes heroBits { to { opacity: 1; } }
+
+    @media (max-width: 768px) {
+      .hero-inner { padding: 0 24px; padding-top: 100px; }
+      .hero-ghost { font-size: 38vw; }
+      .scroll-indicator { display: none; }
+    }
+    @media (min-width: 1600px) {
+      .hero-inner { padding: 0 64px; padding-top: 100px; }
+    }
+
+    /* ============================================================
+       ABOUT
+    ============================================================ */
+    #about {
+      position: relative;
+      background: var(--linen);
+      padding: 120px 0 140px;
+      overflow: hidden;
+    }
+    .about-ghost {
+      position: absolute;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: 18vw;
+      color: rgba(74,55,40,0.03);
+      top: 50%;
+      left: -2vw;
+      transform: translateY(-50%);
+      white-space: nowrap;
+      pointer-events: none;
+      z-index: 0;
+      line-height: 1;
+    }
+    .about-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 420px 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    @media (max-width: 1100px) {
+      .about-grid { grid-template-columns: 360px 1fr; gap: 56px; }
+    }
+    @media (max-width: 900px) {
+      .about-grid { grid-template-columns: 1fr; gap: 56px; }
+    }
+
+    /* Photo block */
+    .about-photo-wrap {
+      position: relative;
+      flex-shrink: 0;
+    }
+    .about-photo-frame {
+      position: relative;
+    }
+    .about-photo-frame::before {
+      content: '';
+      position: absolute;
+      top: 18px; left: 18px;
+      right: -18px; bottom: -18px;
+      border: 1px solid var(--gold);
+      border-radius: 4px;
+      z-index: 0;
+      opacity: 0.6;
+    }
+    .about-photo {
+      position: relative;
+      z-index: 1;
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: var(--shadow-hover);
+    }
+    .about-photo img {
+      width: 100%;
+      height: auto;
+      max-height: 600px;
+      object-fit: contain;
+      object-position: center top;
+      display: block;
+      background-color: var(--linen);
+    }
+    @media (max-width: 900px) {
+      .about-photo img { max-height: 450px; }
+    }
+
+    /* Badge */
+    .about-badge {
+      position: absolute;
+      bottom: -24px;
+      right: -24px;
+      z-index: 3;
+      background: var(--walnut);
+      color: var(--linen);
+      border-radius: 50%;
+      width: 100px;
+      height: 100px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(45,36,24,0.2);
+    }
+    .badge-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.9rem;
+      font-weight: 400;
+      line-height: 1;
+      color: var(--gold);
+    }
+    .badge-label {
+      font-family: 'Work Sans', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--drift);
+      margin-top: 2px;
+    }
+
+    /* Botanical sprig decoration */
+    .about-sprig {
+      position: absolute;
+      bottom: 60px;
+      left: -20px;
+      opacity: 0.3;
+      z-index: 2;
+    }
+
+    /* About text */
+    .about-text-block { padding-top: 8px; }
+    .about-section-label { margin-bottom: 20px; }
+    .about-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      line-height: 1.2;
+      color: var(--walnut);
+      margin-bottom: 28px;
+    }
+    .about-body {
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 300;
+      font-size: 1rem;
+      line-height: 1.85;
+      color: var(--earth);
+      margin-bottom: 32px;
+      max-width: 520px;
+    }
+    .about-pullquote {
+      border-left: 2px solid var(--gold);
+      padding: 20px 28px;
+      margin: 32px 0;
+      background: rgba(196,168,126,0.06);
+      border-radius: 0 4px 4px 0;
+    }
+    .about-pullquote p {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.25rem;
+      font-weight: 300;
+      line-height: 1.7;
+      color: var(--walnut);
+    }
+
+    /* Stats bar */
+    .stats-bar {
+      display: flex;
+      gap: 40px;
+      margin-top: 48px;
+      padding-top: 40px;
+      border-top: 1px solid rgba(196,168,126,0.3);
+    }
+    .stat-item { flex: 1; }
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      font-weight: 300;
+      color: var(--walnut);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .stat-num span { color: var(--gold); }
+    .stat-label {
+      font-family: 'Work Sans', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cedar);
+    }
+    @media (max-width: 600px) {
+      .stats-bar { gap: 20px; }
+      .stat-num { font-size: 2.2rem; }
+    }
+
+    /* About orbs */
+    .about-orb-1 {
+      width: 400px; height: 400px;
+      top: 0; right: -80px;
+      animation-duration: 14s;
+    }
+    .about-orb-2 {
+      width: 250px; height: 250px;
+      bottom: 80px; left: 20%;
+      animation-duration: 11s;
+      animation-delay: -5s;
+    }
+
+    @media (min-width: 1600px) {
+      #about { padding: 160px 0 180px; }
+      .about-grid { gap: 100px; }
+      .about-photo img { height: 620px; }
+    }
+
+    /* ============================================================
+       SERVICES
+    ============================================================ */
+    #services {
+      position: relative;
+      padding: 120px 0 140px;
+      background: #EDE7DC;
+      overflow: hidden;
+    }
+    .services-texture {
+      position: absolute;
+      inset: 0;
+      background-image: url('mood-wellness.jpg');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.05;
+      mix-blend-mode: multiply;
+    }
+    .services-header {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      margin-bottom: 72px;
+    }
+    .services-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      color: var(--walnut);
+      margin: 16px 0 24px;
+    }
+    .services-sub {
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 300;
+      font-size: 1rem;
+      color: var(--cedar);
+      max-width: 500px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+    .services-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1.45fr 1fr 1fr 1fr;
+      gap: 24px;
+    }
+    @media (max-width: 1100px) {
+      .services-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .services-grid { grid-template-columns: 1fr; }
+    }
+
+    .service-card {
+      background: rgba(247,243,237,0.85);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(196,168,126,0.2);
+      border-radius: 8px;
+      padding: 40px 36px 36px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s var(--ease);
+    }
+    .service-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 0; height: 2px;
+      background: var(--gold);
+      transition: width 0.4s var(--ease);
+    }
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-hover);
+      border-color: rgba(196,168,126,0.4);
+    }
+    .service-card:hover::after { width: 100%; }
+    .service-card.featured {
+      background: var(--walnut);
+      border-color: transparent;
+    }
+    .service-card.featured::after { background: var(--gold); }
+    .service-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.5rem;
+      font-weight: 300;
+      color: rgba(196,168,126,0.25);
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+    .service-card.featured .service-num { color: rgba(212,197,169,0.2); }
+    .service-icon {
+      width: 32px;
+      height: 32px;
+      margin-bottom: 20px;
+      color: var(--gold);
+    }
+    .service-card.featured .service-icon { color: var(--drift); }
+    .service-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 500;
+      font-size: 1.4rem;
+      color: var(--walnut);
+      margin-bottom: 12px;
+      line-height: 1.3;
+    }
+    .service-card.featured .service-name { color: var(--linen); }
+    .service-desc {
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 300;
+      font-size: 0.9rem;
+      line-height: 1.75;
+      color: var(--earth);
+      margin-bottom: 28px;
+    }
+    .service-card.featured .service-desc { color: var(--drift); }
+    .service-link {
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 500;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--cedar);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: gap 0.3s, color 0.3s;
+    }
+    .service-card.featured .service-link { color: var(--gold); }
+    .service-link:hover { gap: 14px; color: var(--walnut); }
+    .service-card.featured .service-link:hover { color: var(--linen); }
+
+    /* Services orbs */
+    .services-orb-1 {
+      width: 600px; height: 600px;
+      top: -200px; right: -100px;
+      animation-duration: 16s;
+    }
+    .services-orb-2 {
+      width: 300px; height: 300px;
+      bottom: 0; left: 10%;
+      animation-duration: 11s;
+      animation-delay: -6s;
+    }
+
+    @media (min-width: 1600px) {
+      #services { padding: 160px 0 180px; }
+      .services-grid { gap: 32px; }
+    }
+
+    /* ============================================================
+       MOOD BREAK
+    ============================================================ */
+    #mood-break {
+      position: relative;
+      height: 480px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .mood-break-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('mood-eucalyptus.jpg');
+      background-size: cover;
+      background-position: center;
+      transition: none;
+    }
+    .mood-break-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(45,36,24,0.35);
+    }
+    .mood-break-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 0 48px;
+      max-width: 800px;
+    }
+    .mood-break-label {
+      font-family: 'Work Sans', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.8;
+      margin-bottom: 20px;
+      display: block;
+    }
+    .mood-break-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-style: italic;
+      font-size: clamp(1.8rem, 3.5vw, 3rem);
+      color: var(--linen);
+      line-height: 1.4;
+    }
+    .mood-break-quote em {
+      font-style: normal;
+      color: var(--gold);
+    }
+    .mood-divider-wrap {
+      margin: 24px auto;
+      display: flex;
+      justify-content: center;
+    }
+    @media (max-width: 768px) {
+      #mood-break { height: 360px; }
+      .mood-break-content { padding: 0 32px; }
+    }
+
+    /* ============================================================
+       WORDS FROM JACQUI (Rotating quotes - technique #11)
+    ============================================================ */
+    #words {
+      position: relative;
+      padding: 120px 0 140px;
+      background: var(--walnut);
+      overflow: hidden;
+    }
+    .words-ghost {
+      position: absolute;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18vw;
+      color: rgba(247,243,237,0.025);
+      top: 50%;
+      right: -2vw;
+      transform: translateY(-50%);
+      white-space: nowrap;
+      pointer-events: none;
+      z-index: 0;
+      line-height: 1;
+    }
+    .words-orb-1 {
+      width: 500px; height: 500px;
+      top: -100px; left: 0;
+      animation-duration: 15s;
+    }
+    .words-orb-2 {
+      width: 300px; height: 300px;
+      bottom: 0; right: 10%;
+      animation-duration: 10s;
+      animation-delay: -5s;
+    }
+    .words-inner {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .words-label { color: var(--gold); margin-bottom: 48px; display: block; }
+
+    /* Rotator */
+    .quote-rotator {
+      position: relative;
+      min-height: 200px;
+    }
+    .quote-slide {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.8s ease;
+    }
+    .quote-slide.active { opacity: 1; position: relative; }
+    .quote-mark {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 6rem;
+      line-height: 0.5;
+      color: rgba(196,168,126,0.15);
+      margin-bottom: 16px;
+      font-style: italic;
+    }
+    .quote-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-style: italic;
+      font-size: clamp(1.4rem, 2.5vw, 2.1rem);
+      color: var(--linen);
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+    .quote-author {
+      font-family: 'Work Sans', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* Rotator dots */
+    .rotator-dots {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 48px;
+    }
+    .rotator-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: rgba(212,197,169,0.3);
+      cursor: pointer;
+      transition: all 0.3s;
+      border: none;
+    }
+    .rotator-dot.active { background: var(--gold); width: 24px; border-radius: 3px; }
+
+    @media (min-width: 1600px) {
+      #words { padding: 160px 0 180px; }
+    }
+
+    /* ============================================================
+       CTA
+    ============================================================ */
+    #cta {
+      position: relative;
+      padding: 140px 0;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+    }
+    .cta-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('wattle-texture.jpg');
+      background-size: cover;
+      background-position: center center;
+      transform: scale(1.05);
+    }
+    .cta-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(45,74,62,0.75) 0%,
+        rgba(45,36,24,0.60) 100%
+      );
+    }
+    .cta-orb-1 {
+      width: 600px; height: 600px;
+      top: -100px; right: -100px;
+      animation-duration: 13s;
+    }
+    .cta-orb-2 {
+      width: 300px; height: 300px;
+      bottom: -50px; left: 20%;
+      animation-duration: 9s;
+      animation-delay: -3s;
+    }
+    .cta-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .cta-label { color: var(--gold); margin-bottom: 28px; display: block; }
+    .cta-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+      color: var(--linen);
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+    .cta-heading em {
+      font-style: italic;
+      color: var(--drift);
+    }
+    .cta-sub {
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 300;
+      font-size: 1rem;
+      line-height: 1.75;
+      color: var(--drift);
+      margin-bottom: 48px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .cta-divider { margin: 0 auto 40px; }
+    .cta-btn-wrap {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn-cta-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 500;
+      font-size: 0.78rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--earth);
+      background: var(--gold);
+      padding: 18px 40px;
+      border-radius: 4px;
+      transition: all 0.35s var(--ease);
+    }
+    .btn-cta-primary:hover { background: var(--linen); transform: translateY(-3px); }
+    .btn-cta-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 400;
+      font-size: 0.78rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--drift);
+      border: 1px solid rgba(212,197,169,0.4);
+      padding: 18px 40px;
+      border-radius: 4px;
+      transition: all 0.35s var(--ease);
+    }
+    .btn-cta-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-3px); }
+
+    @media (min-width: 1600px) { #cta { padding: 180px 0; } }
+
+    /* ============================================================
+       CONTACT
+    ============================================================ */
+    #contact {
+      position: relative;
+      padding: 120px 0 140px;
+      background: var(--linen);
+      overflow: hidden;
+    }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    @media (max-width: 860px) {
+      .contact-grid { grid-template-columns: 1fr; gap: 56px; }
+    }
+    .contact-left-label { margin-bottom: 20px; }
+    .contact-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      color: var(--walnut);
+      margin-bottom: 16px;
+    }
+    .contact-sub {
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 300;
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: var(--earth);
+      max-width: 400px;
+      margin-bottom: 48px;
+    }
+    .contact-links { display: flex; flex-direction: column; gap: 20px; }
+    .contact-link-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .contact-icon {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: rgba(196,168,126,0.12);
+      border: 1px solid rgba(196,168,126,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--cedar);
+      transition: all 0.3s;
+    }
+    .contact-link-item:hover .contact-icon {
+      background: var(--gold);
+      color: var(--earth);
+    }
+    .contact-link-text {
+      font-family: 'Work Sans', sans-serif;
+      font-size: 0.9rem;
+      color: var(--earth);
+      transition: color 0.3s;
+    }
+    .contact-link-text strong {
+      display: block;
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--cedar);
+      font-weight: 400;
+      margin-bottom: 2px;
+    }
+    .contact-link-item:hover .contact-link-text { color: var(--walnut); }
+
+    /* Info blocks */
+    .contact-info-blocks {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .info-block {
+      background: rgba(196,168,126,0.08);
+      border: 1px solid rgba(196,168,126,0.2);
+      border-radius: 8px;
+      padding: 24px 28px;
+    }
+    .info-block-label {
+      font-family: 'Work Sans', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+    .info-block-content {
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 300;
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: var(--earth);
+    }
+    .contact-book-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 500;
+      font-size: 0.73rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--earth);
+      background: var(--gold);
+      padding: 14px 28px;
+      border-radius: 4px;
+      margin-top: 16px;
+      transition: all 0.3s;
+    }
+    .contact-book-btn:hover { background: var(--cedar); color: var(--white); }
+
+    @media (min-width: 1600px) { #contact { padding: 160px 0 180px; } }
+
+    /* ============================================================
+       GALLERY STRIP
+    ============================================================ */
+    #gallery {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      height: 320px;
+      overflow: hidden;
+    }
+    .gallery-item {
+      overflow: hidden;
+      position: relative;
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center top;
+      background-color: var(--linen);
+      transition: transform 0.8s var(--ease);
+      display: block;
+    }
+    .gallery-item:hover img { transform: scale(1.07); }
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(45,36,24,0.15);
+      transition: background 0.4s;
+    }
+    .gallery-item:hover .gallery-overlay { background: rgba(45,36,24,0); }
+    @media (max-width: 600px) {
+      #gallery { grid-template-columns: 1fr 1fr; height: 220px; }
+      .gallery-item:last-child { display: none; }
+    }
+    @media (min-width: 1600px) { #gallery { height: 400px; } }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    #footer {
+      background: var(--earth);
+      padding: 64px 0;
+    }
+    .footer-inner {
+      max-width: var(--max-content);
+      margin: 0 auto;
+      padding: 0 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 32px;
+    }
+    .footer-logo img { height: 36px; width: auto; opacity: 0.85; }
+    .footer-tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.05rem;
+      color: rgba(247,243,237,0.5);
+    }
+    .footer-copy {
+      font-family: 'Work Sans', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 300;
+      color: rgba(247,243,237,0.35);
+      text-align: right;
+    }
+    .footer-copy a { color: rgba(196,168,126,0.5); transition: color 0.3s; }
+    .footer-copy a:hover { color: var(--gold); }
+    @media (max-width: 768px) {
+      .footer-inner { flex-direction: column; align-items: flex-start; padding: 0 24px; }
+      .footer-copy { text-align: left; }
+    }
+    @media (min-width: 2200px) {
+      .footer-inner { max-width: 1680px; padding: 0 80px; }
+    }
+
+    /* ============================================================
+       SCROLL REVEAL ANIMATIONS
+    ============================================================ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
+    }
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-50px);
+      transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
+    }
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(50px);
+      transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
+    }
+    .reveal-scale {
+      opacity: 0;
+      transform: scale(0.94);
+      transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
+    }
+    .reveal.visible,
+    .reveal-left.visible,
+    .reveal-right.visible,
+    .reveal-scale.visible {
+      opacity: 1;
+      transform: translate(0) scale(1);
+    }
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.2s; }
+    .delay-3 { transition-delay: 0.3s; }
+    .delay-4 { transition-delay: 0.4s; }
+    .delay-5 { transition-delay: 0.5s; }
+    .delay-6 { transition-delay: 0.6s; }
+
+    /* ============================================================
+       EUCALYPTUS SVG ICON
+    ============================================================ */
+    .sprig-icon svg {
+      width: 32px;
+      height: 48px;
+      display: block;
+    }
+
+    /* ============================================================
+       PRINT STYLES
+    ============================================================ */
+    @media print {
+      #loader, #grain, #cursor-dot, #cursor-ring,
+      .orb, .hero-ghost, .about-ghost, .words-ghost,
+      #mobile-menu { display: none !important; }
+      body { cursor: auto; }
+      #hero { height: auto; min-height: 60vh; }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- ============================================================
+     LOADING SCREEN
+============================================================ -->
+<div id="loader">
+  <img src="logo-lockup-light-1.png" alt="Jacqui McGregor Wellbeing" class="loader-logo">
+  <div class="loader-bar-wrap"><div class="loader-bar"></div></div>
+  <span class="loader-tagline">Counsellor &amp; Coach &mdash; Australia</span>
+</div>
+
+<!-- ============================================================
+     FILM GRAIN
+============================================================ -->
+<svg id="grain" xmlns="http://www.w3.org/2000/svg">
+  <filter id="noise">
+    <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/>
+    <feColorMatrix type="saturate" values="0"/>
+  </filter>
+  <rect width="100%" height="100%" filter="url(#noise)"/>
+</svg>
+
+<!-- ============================================================
+     CUSTOM CURSOR
+============================================================ -->
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
+
+<!-- ============================================================
+     MOBILE MENU
+============================================================ -->
+<div id="mobile-menu" aria-hidden="true">
+  <button class="mobile-close" id="mobile-close" aria-label="Close menu">&times;</button>
+  <ul class="mobile-nav-links">
+    <li><a href="#about" onclick="closeMobileMenu()">About</a></li>
+    <li><a href="#services" onclick="closeMobileMenu()">Services</a></li>
+    <li><a href="#words" onclick="closeMobileMenu()">Philosophy</a></li>
+    <li><a href="#contact" onclick="closeMobileMenu()">Contact</a></li>
+  </ul>
+  <a href="https://clientportal.zandahealth.com/clientportal/jmwellbeing" target="_blank" rel="noopener noreferrer" class="mobile-cta">Book a Session</a>
+</div>
+
+<!-- ============================================================
+     NAVIGATION
+============================================================ -->
+<nav id="nav" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo" aria-label="Jacqui McGregor Wellbeing - home" style="line-height: 1.2; text-decoration: none;">
+      <span class="logo-light font-heading" style="color: var(--linen); font-size: 1.3rem; font-weight: 400; letter-spacing: 0.02em;">Jacqui McGregor <em style="font-weight: 300; opacity: 0.7;">Wellbeing</em></span>
+      <span class="logo-dark font-heading" style="color: var(--earth); font-size: 1.3rem; font-weight: 400; letter-spacing: 0.02em;">Jacqui McGregor <em style="font-weight: 300; opacity: 0.7;">Wellbeing</em></span>
+    </a>
+    <ul class="nav-links" role="list">
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#words">Philosophy</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="https://clientportal.zandahealth.com/clientportal/jmwellbeing" target="_blank" rel="noopener noreferrer" class="nav-cta">Book a Session</a>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ============================================================
+     HERO
+============================================================ -->
+<section id="hero" aria-label="Hero">
+  <!-- Video background -->
+  <video class="hero-bg" id="hero-bg" autoplay muted loop playsinline poster="wattle-hero.jpg" style="object-fit:cover;">
+    <source src="video-wattle-landscape.mp4" type="video/mp4">
+  </video>
+  <div class="hero-overlay"></div>
+  <div class="hero-vignette"></div>
+
+  <!-- Ambient orbs -->
+  <div class="orb orb-gold hero-orb-1"></div>
+  <div class="orb orb-cedar hero-orb-2"></div>
+
+  <!-- Ghost watermark -->
+  <div class="hero-ghost" aria-hidden="true">home</div>
+
+  <!-- Content -->
+  <div class="hero-content">
+    <div class="hero-inner">
+      <p class="hero-role">Counsellor &amp; Coach &nbsp;&middot;&nbsp; Australia</p>
+
+      <div class="hero-title-wrap" aria-label="Jacqui McGregor">
+        <span class="title-line"><span class="title-inner">Jacqui</span></span>
+        <span class="title-line"><span class="title-inner">McGregor</span></span>
+      </div>
+
+      <div class="hero-divider">
+        <span class="d-line"></span>
+        <span class="d-diamond">&#9670;</span>
+        <span class="d-line"></span>
+      </div>
+
+      <p class="hero-tagline">Come home to yourself.</p>
+
+      <div class="hero-cta-wrap">
+        <a href="https://clientportal.zandahealth.com/clientportal/jmwellbeing" target="_blank" rel="noopener noreferrer" class="btn-primary">
+          Book a Session
+          <svg width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M1 5h12M9 1l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#about" class="btn-outline">Meet Jacqui</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="scroll-indicator" aria-hidden="true">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ============================================================
+     ABOUT
+============================================================ -->
+<section id="about" aria-labelledby="about-heading">
+  <!-- Ambient orbs -->
+  <div class="orb orb-gold about-orb-1"></div>
+  <div class="orb orb-cedar about-orb-2"></div>
+
+  <!-- Ghost watermark -->
+  <div class="about-ghost" aria-hidden="true">whole</div>
+
+  <div class="container">
+    <div class="about-grid">
+
+      <!-- Photo column -->
+      <div class="about-photo-wrap reveal-left">
+        <div class="about-photo-frame">
+          <div class="about-photo">
+            <img
+              src="photo-jacqui-1.jpg"
+              alt="Jacqui McGregor - Counsellor and Coach"
+              loading="lazy"
+            >
+          </div>
+        </div>
+        <!-- Badge -->
+        <div class="about-badge" aria-label="4 or more years in practice">
+          <span class="badge-num" data-target="4">0</span>
+          <span class="badge-label">Years<br>Practice</span>
+        </div>
+        <!-- Botanical sprig -->
+        <div class="about-sprig" aria-hidden="true">
+          <svg width="48" height="80" viewBox="0 0 48 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M24 78 C24 55 18 30 12 8" stroke="#6B8F71" stroke-width="0.9" fill="none" stroke-linecap="round"/>
+            <ellipse cx="18" cy="20" rx="9" ry="5.5" fill="none" stroke="#6B8F71" stroke-width="0.75" transform="rotate(-30 18 20)" opacity="0.7"/>
+            <ellipse cx="16" cy="38" rx="10" ry="5.5" fill="none" stroke="#6B8F71" stroke-width="0.75" transform="rotate(-18 16 38)" opacity="0.7"/>
+            <ellipse cx="18" cy="56" rx="8" ry="5" fill="none" stroke="#6B8F71" stroke-width="0.75" transform="rotate(-22 18 56)" opacity="0.7"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Text column -->
+      <div class="about-text-block">
+        <p class="label-small about-section-label reveal delay-1">About Jacqui</p>
+
+        <h2 id="about-heading" class="about-heading reveal delay-2">
+          Where compassion<br>
+          meets <em class="font-italic text-cedar">practical wisdom.</em>
+        </h2>
+
+        <p class="about-body reveal delay-3">
+          Jacqui McGregor knows what it is to carry more than your share. As a counsellor, coach, and carer herself, she has spent years learning how to create real, lasting change - not through force or willpower, but through compassion, understanding, and practical tools that actually stick.
+        </p>
+
+        <div class="about-pullquote reveal delay-4">
+          <p>"You are already the expert on your own life. My work simply helps you remember that."</p>
+        </div>
+
+        <p class="about-body reveal delay-5">
+          Her practice is built on a simple truth - and a deep respect for each person's own wisdom. Jacqui works with women (40+) navigating exhaustion and overwhelm, and with young people (16+) finding their footing. Every session is grounded in lived experience, mind-body awareness, and genuine care.
+        </p>
+
+        <!-- Stats -->
+        <div class="stats-bar reveal delay-6">
+          <div class="stat-item">
+            <div class="stat-num"><span class="count-stat" data-target="4">0</span><span>+</span></div>
+            <div class="stat-label">Years in<br>Practice</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num" style="font-size: 1.5rem; padding-top: 6px; line-height: 1.2;">Online<br><span style="color: var(--gold);">&amp;</span></div>
+            <div class="stat-label">In-Person<br>Available</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num"><span style="color: var(--gold);">16</span><span style="font-size: 1.8rem;">+</span></div>
+            <div class="stat-label">Teen Support<br>Age Group</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SERVICES
+============================================================ -->
+<section id="services" aria-labelledby="services-heading">
+  <div class="services-texture" aria-hidden="true"></div>
+  <div class="orb orb-cedar services-orb-1"></div>
+  <div class="orb orb-gold services-orb-2"></div>
+
+  <div class="container">
+    <header class="services-header">
+      <p class="label-small reveal">How we work together</p>
+      <h2 id="services-heading" class="services-heading reveal delay-2">
+        A space held <em class="font-italic">just for you.</em>
+      </h2>
+      <div class="brand-divider center reveal delay-3" style="margin: 0 auto 20px;">
+        <span class="d-line"></span>
+        <span class="d-sprig">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><ellipse cx="10" cy="10" rx="6" ry="3.5" stroke="currentColor" stroke-width="1" transform="rotate(-30 10 10)"/></svg>
+        </span>
+        <span class="d-line"></span>
+      </div>
+      <p class="services-sub reveal delay-4">
+        Whether you are carrying exhaustion, seeking steadiness, or supporting someone you love - there is a way to work together that fits where you are.
+      </p>
+    </header>
+
+    <div class="services-grid">
+      <!-- Featured card -->
+      <div class="service-card featured reveal delay-1">
+        <div class="service-num">01</div>
+        <div class="service-icon sprig-icon">
+          <svg viewBox="0 0 32 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16 46 C16 32 12 18 8 6" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+            <ellipse cx="12" cy="14" rx="7" ry="4.5" fill="none" stroke="currentColor" stroke-width="1" transform="rotate(-28 12 14)" opacity="0.8"/>
+            <ellipse cx="11" cy="28" rx="8" ry="4.5" fill="none" stroke="currentColor" stroke-width="1" transform="rotate(-16 11 28)" opacity="0.8"/>
+            <ellipse cx="13" cy="40" rx="6.5" ry="4" fill="none" stroke="currentColor" stroke-width="1" transform="rotate(-22 13 40)" opacity="0.8"/>
+          </svg>
+        </div>
+        <h3 class="service-name">Individual Counselling</h3>
+        <p class="service-desc">
+          One-on-one counselling for women navigating exhaustion, overwhelm, and the quiet weight of putting everyone else first. A safe, warm space to be heard, supported, and gently helped back to yourself.
+        </p>
+        <a href="https://clientportal.zandahealth.com/clientportal/jmwellbeing" target="_blank" rel="noopener noreferrer" class="service-link">
+          Book Now
+          <svg width="12" height="8" viewBox="0 0 12 8" fill="none"><path d="M1 4h10M7 1l3 3-3 3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="service-card reveal delay-2">
+        <div class="service-num">02</div>
+        <div class="service-icon sprig-icon">
+          <svg viewBox="0 0 32 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16 46 C16 32 12 18 8 6" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+            <ellipse cx="12" cy="14" rx="7" ry="4.5" fill="none" stroke="currentColor" stroke-width="1" transform="rotate(-28 12 14)" opacity="0.6"/>
+            <ellipse cx="11" cy="28" rx="8" ry="4.5" fill="none" stroke="currentColor" stroke-width="1" transform="rotate(-16 11 28)" opacity="0.6"/>
+          </svg>
+        </div>
+        <h3 class="service-name">Coaching for Women</h3>
+        <p class="service-desc">
+          Practical, grounded coaching for women ready to feel lighter, calmer, and more at home in their own lives. Real tools that create lasting, sustainable change.
+        </p>
+        <a href="https://clientportal.zandahealth.com/clientportal/jmwellbeing" target="_blank" rel="noopener noreferrer" class="service-link">
+          Book Now
+          <svg width="12" height="8" viewBox="0 0 12 8" fill="none"><path d="M1 4h10M7 1l3 3-3 3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="service-card reveal delay-3">
+        <div class="service-num">03</div>
+        <div class="service-icon sprig-icon">
+          <svg viewBox="0 0 32 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16 46 C16 32 14 18 12 8" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+            <ellipse cx="14" cy="16" rx="7" ry="4" fill="none" stroke="currentColor" stroke-width="1" transform="rotate(-20 14 16)" opacity="0.6"/>
+            <ellipse cx="13" cy="30" rx="7.5" ry="4" fill="none" stroke="currentColor" stroke-width="1" transform="rotate(-10 13 30)" opacity="0.6"/>
+          </svg>
+        </div>
+        <h3 class="service-name">Teen Support (16+)</h3>
+        <p class="service-desc">
+          A grounded, non-judgmental space for young people navigating identity, school pressure, relationships, and the very real challenge of finding steady ground.
+        </p>
+        <a href="https://clientportal.zandahealth.com/clientportal/jmwellbeing" target="_blank" rel="noopener noreferrer" class="service-link">
+          Book Now
+          <svg width="12" height="8" viewBox="0 0 12 8" fill="none"><path d="M1 4h10M7 1l3 3-3 3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="service-card reveal delay-4">
+        <div class="service-num">04</div>
+        <div class="service-icon sprig-icon">
+          <svg viewBox="0 0 32 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="16" cy="24" r="10" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+            <circle cx="16" cy="24" r="6" stroke="currentColor" stroke-width="1" opacity="0.7"/>
+            <circle cx="16" cy="24" r="2" fill="currentColor" opacity="0.8"/>
+          </svg>
+        </div>
+        <h3 class="service-name">Online Sessions</h3>
+        <p class="service-desc">
+          Available Australia-wide via secure video. The same warmth, the same depth - wherever you are. No commute, no compromise.
+        </p>
+        <a href="https://clientportal.zandahealth.com/clientportal/jmwellbeing" target="_blank" rel="noopener noreferrer" class="service-link">
+          Book Now
+          <svg width="12" height="8" viewBox="0 0 12 8" fill="none"><path d="M1 4h10M7 1l3 3-3 3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Calmer Pathways Featured Program -->
+    <div style="margin-top: 64px; background: var(--walnut); border-radius: 16px; overflow: hidden; position: relative;">
+      <video autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.2;">
+        <source src="video-koala.mp4" type="video/mp4">
+      </video>
+      <div style="position:relative;z-index:1;padding: 48px 40px; display: flex; align-items: center; gap: 40px; flex-wrap: wrap;">
+        <div style="flex: 1; min-width: 280px;">
+          <p class="label-small" style="color: var(--cedar); margin-bottom: 8px;">Featured Program</p>
+          <h3 class="font-heading" style="color: var(--linen); font-size: 2rem; font-weight: 300; margin-bottom: 12px;">Calmer Pathways</h3>
+          <p style="color: var(--drift); font-weight: 300; line-height: 1.7; margin-bottom: 4px;">6-week group program for overwhelmed mums. From depleted to lighter. Body-level work, not mindset hacks.</p>
+          <p style="color: var(--cedar); font-weight: 400; font-size: 0.9rem;">Next cohort: Friday 15 May 2026 - $495</p>
+        </div>
+        <div style="flex-shrink: 0;">
+          <a href="calmer-pathways/" style="display: inline-block; background: var(--cedar); color: var(--linen); padding: 14px 32px; border-radius: 8px; text-decoration: none; font-weight: 500; font-size: 0.95rem; letter-spacing: 0.02em;">
+            Learn More
+            <svg width="12" height="8" viewBox="0 0 12 8" fill="none" style="margin-left: 8px;"><path d="M1 4h10M7 1l3 3-3 3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     MOOD BREAK
+============================================================ -->
+<div id="mood-break" aria-hidden="true">
+  <video class="mood-break-bg" id="mood-break-bg" autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;">
+    <source src="video-shores.mp4" type="video/mp4">
+  </video>
+  <div class="mood-break-overlay"></div>
+  <div class="mood-break-content">
+    <span class="mood-break-label">Jacqui McGregor Wellbeing</span>
+    <div class="brand-divider center mood-divider-wrap" style="margin: 0 auto 28px;" aria-hidden="true">
+      <span class="d-line" style="background: rgba(196,168,126,0.4);"></span>
+      <span class="d-diamond" style="color: rgba(196,168,126,0.7); font-size: 10px;">&#9670;</span>
+      <span class="d-line" style="background: rgba(196,168,126,0.4);"></span>
+    </div>
+    <blockquote class="mood-break-quote">
+      Practical tools. <em>Lasting change.</em>
+    </blockquote>
+  </div>
+</div>
+
+<!-- ============================================================
+     WORDS FROM JACQUI (Technique #11 - Testimonial Rotator)
+============================================================ -->
+<section id="words" aria-labelledby="words-heading">
+  <div class="orb orb-linen words-orb-1"></div>
+  <div class="orb orb-cedar words-orb-2"></div>
+
+  <!-- Ghost watermark -->
+  <div class="words-ghost" aria-hidden="true">peace</div>
+
+  <div class="container">
+    <div class="words-inner">
+      <span class="label-small words-label reveal" id="words-heading">Words from Jacqui's Practice</span>
+
+      <div class="quote-rotator reveal delay-2" id="quoteRotator" aria-live="polite">
+
+        <div class="quote-slide active" role="region" aria-label="Quote 1">
+          <div class="quote-mark" aria-hidden="true">&ldquo;</div>
+          <p class="quote-text">
+            You have been carrying so much for so long. What if you did not have to do it alone anymore?
+          </p>
+          <span class="quote-author">Jacqui McGregor</span>
+        </div>
+
+        <div class="quote-slide" role="region" aria-label="Quote 2">
+          <div class="quote-mark" aria-hidden="true">&ldquo;</div>
+          <p class="quote-text">
+            Real, lasting change is not built through force or willpower. It is built through compassion, understanding, and tools that actually stick.
+          </p>
+          <span class="quote-author">Jacqui McGregor</span>
+        </div>
+
+        <div class="quote-slide" role="region" aria-label="Quote 3">
+          <div class="quote-mark" aria-hidden="true">&ldquo;</div>
+          <p class="quote-text">
+            The woman you have always been is still there - steady, whole, and waiting. Sometimes she just needs a little quiet, and someone to witness her return.
+          </p>
+          <span class="quote-author">Jacqui McGregor</span>
+        </div>
+
+      </div>
+
+      <!-- Rotator dots -->
+      <div class="rotator-dots reveal delay-3" role="tablist" aria-label="Quote navigation">
+        <button class="rotator-dot active" data-index="0" role="tab" aria-selected="true" aria-label="Quote 1"></button>
+        <button class="rotator-dot" data-index="1" role="tab" aria-selected="false" aria-label="Quote 2"></button>
+        <button class="rotator-dot" data-index="2" role="tab" aria-selected="false" aria-label="Quote 3"></button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CTA
+============================================================ -->
+<section id="cta" aria-labelledby="cta-heading">
+  <div class="cta-bg" id="cta-bg"></div>
+  <div class="cta-overlay"></div>
+  <div class="orb orb-gold cta-orb-1"></div>
+  <div class="orb orb-cedar cta-orb-2"></div>
+
+  <div class="container">
+    <div class="cta-content">
+      <span class="label-small cta-label reveal">When you are ready</span>
+      <div class="brand-divider center cta-divider reveal delay-1" aria-hidden="true">
+        <span class="d-line"></span>
+        <span class="d-diamond">&#9670;</span>
+        <span class="d-line"></span>
+      </div>
+      <h2 id="cta-heading" class="cta-heading reveal delay-2">
+        You deserve to feel <em>at home</em><br>
+        in your own life.
+      </h2>
+      <p class="cta-sub reveal delay-3">
+        When you are ready to put yourself first, Jacqui is here. Sessions available online across Australia and in-person.
+      </p>
+      <div class="cta-btn-wrap reveal delay-4">
+        <a href="https://clientportal.zandahealth.com/clientportal/jmwellbeing" target="_blank" rel="noopener noreferrer" class="btn-cta-primary">
+          Book Your First Session
+          <svg width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M1 5h12M9 1l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#contact" class="btn-cta-outline">
+          Get in Touch
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CONTACT
+============================================================ -->
+<section id="contact" aria-labelledby="contact-heading">
+  <div class="container">
+    <div class="contact-grid">
+
+      <!-- Left -->
+      <div>
+        <p class="label-small contact-left-label reveal">Get in touch</p>
+        <h2 id="contact-heading" class="contact-heading reveal delay-1">
+          Ready when<br>
+          <em class="font-italic text-cedar">you are.</em>
+        </h2>
+        <p class="contact-sub reveal delay-2">
+          No pressure, no rush. Reach out whenever feels right. Jacqui responds to all enquiries within 24 hours.
+        </p>
+
+        <div class="contact-links reveal delay-3">
+
+          <a href="mailto:info@jmwellbeing.com.au" class="contact-link-item">
+            <div class="contact-icon" aria-hidden="true">
+              <svg width="18" height="14" viewBox="0 0 18 14" fill="none"><rect x="1" y="1" width="16" height="12" rx="2" stroke="currentColor" stroke-width="1.3"/><path d="M1 3l8 5 8-5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+            </div>
+            <div class="contact-link-text">
+              <strong>Email</strong>
+              info@jmwellbeing.com.au
+            </div>
+          </a>
+
+          <a href="https://www.instagram.com/jmwellbeing" target="_blank" rel="noopener noreferrer" class="contact-link-item">
+            <div class="contact-icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="1" y="1" width="16" height="16" rx="4" stroke="currentColor" stroke-width="1.3"/><circle cx="9" cy="9" r="4" stroke="currentColor" stroke-width="1.3"/><circle cx="14" cy="4" r="1" fill="currentColor"/></svg>
+            </div>
+            <div class="contact-link-text">
+              <strong>Instagram</strong>
+              @jmwellbeing
+            </div>
+          </a>
+
+          <a href="https://clientportal.zandahealth.com/clientportal/jmwellbeing" target="_blank" rel="noopener noreferrer" class="contact-link-item">
+            <div class="contact-icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="4" width="14" height="12" rx="2" stroke="currentColor" stroke-width="1.3"/><path d="M6 4V3a3 3 0 016 0v1" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><circle cx="9" cy="10" r="1.5" stroke="currentColor" stroke-width="1.3"/></svg>
+            </div>
+            <div class="contact-link-text">
+              <strong>Booking Portal</strong>
+              Book online via Zanda Health
+            </div>
+          </a>
+
+          <a href="https://www.jmwellbeing.com.au" target="_blank" rel="noopener noreferrer" class="contact-link-item">
+            <div class="contact-icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8" stroke="currentColor" stroke-width="1.3"/><path d="M1 9h16M9 1a14 14 0 010 16M9 1a14 14 0 000 16" stroke="currentColor" stroke-width="1.3"/></svg>
+            </div>
+            <div class="contact-link-text">
+              <strong>Website</strong>
+              www.jmwellbeing.com.au
+            </div>
+          </a>
+
+        </div>
+      </div>
+
+      <!-- Right - Info blocks -->
+      <div class="contact-info-blocks reveal-right delay-2">
+
+        <div class="info-block">
+          <div class="info-block-label">How sessions work</div>
+          <div class="info-block-content">
+            Sessions are available online across Australia via secure video. In-person availability may vary - please enquire via the booking portal.
+          </div>
+        </div>
+
+        <div class="info-block">
+          <div class="info-block-label">Who Jacqui works with</div>
+          <div class="info-block-content">
+            Women (40+) navigating exhaustion, overwhelm, and carrying too much.<br>
+            Young people (16+) finding steady ground.
+          </div>
+        </div>
+
+        <div class="info-block">
+          <div class="info-block-label">Response time</div>
+          <div class="info-block-content">
+            All email enquiries are responded to within 24 hours. Jacqui reads every message personally.
+          </div>
+        </div>
+
+        <a href="https://clientportal.zandahealth.com/clientportal/jmwellbeing" target="_blank" rel="noopener noreferrer" class="contact-book-btn">
+          Open Booking Portal
+          <svg width="12" height="8" viewBox="0 0 12 8" fill="none"><path d="M1 4h10M7 1l3 3-3 3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     MOOD GALLERY STRIP
+============================================================ -->
+<div id="gallery" aria-hidden="true">
+  <div class="gallery-item">
+    <img src="mood-hydrangea.jpg" alt="" loading="lazy">
+    <div class="gallery-overlay"></div>
+  </div>
+  <div class="gallery-item">
+    <video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;">
+      <source src="video-boab.mp4" type="video/mp4">
+    </video>
+    <div class="gallery-overlay"></div>
+  </div>
+  <div class="gallery-item">
+    <img src="mood-wellness.jpg" alt="" loading="lazy">
+    <div class="gallery-overlay"></div>
+  </div>
+</div>
+
+<!-- ============================================================
+     FOOTER
+============================================================ -->
+<footer id="footer">
+  <div class="footer-inner">
+    <a href="#" class="footer-logo" aria-label="Back to top">
+      <img src="logo-lockup-light-1.png" alt="Jacqui McGregor Wellbeing">
+    </a>
+    <p class="footer-tagline">Come home to yourself.</p>
+    <div class="footer-copy">
+      &copy; 2026 Jacqui McGregor Wellbeing<br>
+      <a href="mailto:info@jmwellbeing.com.au">info@jmwellbeing.com.au</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================================
+     JAVASCRIPT
+============================================================ -->
+<script>
+  'use strict';
+
+  /* ----------------------------------------------------------
+     LOADER
+  ---------------------------------------------------------- */
+  (function () {
+    document.body.style.overflow = 'hidden';
+    setTimeout(function () {
+      var loader = document.getElementById('loader');
+      loader.classList.add('hidden');
+      setTimeout(function () {
+        loader.style.display = 'none';
+        document.body.style.overflow = '';
+        initReveal();
+        initCounters();
+      }, 900);
+    }, 1600);
+  })();
+
+  /* ----------------------------------------------------------
+     CUSTOM CURSOR
+  ---------------------------------------------------------- */
+  (function () {
+    if (window.matchMedia('(max-width: 768px)').matches) return;
+    var dot = document.getElementById('cursor-dot');
+    var ring = document.getElementById('cursor-ring');
+    var ringX = 0, ringY = 0;
+    var mouseX = 0, mouseY = 0;
+
+    document.addEventListener('mousemove', function (e) {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      dot.style.left = mouseX + 'px';
+      dot.style.top = mouseY + 'px';
+    });
+
+    function lerp(a, b, n) { return (1 - n) * a + n * b; }
+    function animateCursor() {
+      ringX = lerp(ringX, mouseX, 0.14);
+      ringY = lerp(ringY, mouseY, 0.14);
+      ring.style.left = ringX + 'px';
+      ring.style.top = ringY + 'px';
+      requestAnimationFrame(animateCursor);
+    }
+    animateCursor();
+
+    var hoverEls = document.querySelectorAll('a, button, .service-card, .gallery-item');
+    hoverEls.forEach(function (el) {
+      el.addEventListener('mouseenter', function () { document.body.classList.add('cursor-hover'); });
+      el.addEventListener('mouseleave', function () { document.body.classList.remove('cursor-hover'); });
+    });
+  })();
+
+  /* ----------------------------------------------------------
+     STICKY NAV
+  ---------------------------------------------------------- */
+  (function () {
+    var nav = document.getElementById('nav');
+    window.addEventListener('scroll', function () {
+      if (window.scrollY > 80) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    }, { passive: true });
+  })();
+
+  /* ----------------------------------------------------------
+     HAMBURGER MENU
+  ---------------------------------------------------------- */
+  var mobileMenu = document.getElementById('mobile-menu');
+  var hamburger = document.getElementById('nav-hamburger');
+  var mobileClose = document.getElementById('mobile-close');
+
+  hamburger.addEventListener('click', function () {
+    mobileMenu.classList.add('open');
+    mobileMenu.removeAttribute('aria-hidden');
+    hamburger.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  });
+
+  function closeMobileMenu() {
+    mobileMenu.classList.remove('open');
+    mobileMenu.setAttribute('aria-hidden', 'true');
+    hamburger.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+  mobileClose.addEventListener('click', closeMobileMenu);
+  mobileMenu.addEventListener('click', function (e) {
+    if (e.target === mobileMenu) closeMobileMenu();
+  });
+
+  /* ----------------------------------------------------------
+     HERO PARALLAX
+  ---------------------------------------------------------- */
+  (function () {
+    var heroBg = document.getElementById('hero-bg');
+    var moodBreakBg = document.getElementById('mood-break-bg');
+    var ctaBg = document.getElementById('cta-bg');
+    window.addEventListener('scroll', function () {
+      var sy = window.scrollY;
+      if (heroBg) {
+        heroBg.style.transform = 'scale(1.06) translateY(' + (sy * 0.2) + 'px)';
+      }
+      if (moodBreakBg) {
+        /* parallax disabled - wattle looks better static */
+      }
+      if (ctaBg) {
+        var rct = ctaBg.parentElement.getBoundingClientRect();
+        var off = (window.innerHeight / 2 - rct.top) * 0.1;
+        ctaBg.style.transform = 'scale(1.05) translateY(' + off + 'px)';
+      }
+    }, { passive: true });
+  })();
+
+  /* ----------------------------------------------------------
+     INTERSECTION OBSERVER SCROLL REVEALS
+  ---------------------------------------------------------- */
+  function initReveal() {
+    var items = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    items.forEach(function (item) { observer.observe(item); });
+  }
+
+  /* ----------------------------------------------------------
+     COUNTER ANIMATIONS
+  ---------------------------------------------------------- */
+  function initCounters() {
+    var counters = document.querySelectorAll('.count-stat');
+    if (!counters.length) return;
+
+    var counterObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        var el = entry.target;
+        var target = parseInt(el.getAttribute('data-target'), 10);
+        var start = 0;
+        var duration = 1200;
+        var startTime = null;
+
+        function step(ts) {
+          if (!startTime) startTime = ts;
+          var progress = Math.min((ts - startTime) / duration, 1);
+          var eased = 1 - Math.pow(1 - progress, 3);
+          el.textContent = Math.floor(eased * target);
+          if (progress < 1) {
+            requestAnimationFrame(step);
+          } else {
+            el.textContent = target;
+          }
+        }
+        requestAnimationFrame(step);
+        counterObserver.unobserve(el);
+      });
+    }, { threshold: 0.5 });
+
+    counters.forEach(function (c) { counterObserver.observe(c); });
+
+    /* Badge number (separate counter) */
+    var badge = document.querySelector('.about-badge .badge-num');
+    if (badge) {
+      var badgeObs = new IntersectionObserver(function (entries) {
+        if (!entries[0].isIntersecting) return;
+        var t = 4;
+        var st = 0;
+        var dur = 1000;
+        var sTime = null;
+        function bStep(ts) {
+          if (!sTime) sTime = ts;
+          var p = Math.min((ts - sTime) / dur, 1);
+          badge.textContent = Math.ceil(p * t) + '+';
+          if (p < 1) requestAnimationFrame(bStep);
+          else badge.textContent = '4+';
+        }
+        requestAnimationFrame(bStep);
+        badgeObs.unobserve(badge);
+      }, { threshold: 0.5 });
+      badgeObs.observe(badge);
+    }
+  }
+
+  /* ----------------------------------------------------------
+     QUOTE ROTATOR (Testimonial technique)
+  ---------------------------------------------------------- */
+  (function () {
+    var slides = document.querySelectorAll('.quote-slide');
+    var dots = document.querySelectorAll('.rotator-dot');
+    var currentIndex = 0;
+    var interval;
+
+    function goTo(index) {
+      slides[currentIndex].classList.remove('active');
+      dots[currentIndex].classList.remove('active');
+      dots[currentIndex].setAttribute('aria-selected', 'false');
+      currentIndex = index;
+      slides[currentIndex].classList.add('active');
+      dots[currentIndex].classList.add('active');
+      dots[currentIndex].setAttribute('aria-selected', 'true');
+    }
+
+    function next() {
+      goTo((currentIndex + 1) % slides.length);
+    }
+
+    function startAuto() {
+      interval = setInterval(next, 4800);
+    }
+
+    function stopAuto() {
+      clearInterval(interval);
+    }
+
+    dots.forEach(function (dot) {
+      dot.addEventListener('click', function () {
+        stopAuto();
+        goTo(parseInt(this.getAttribute('data-index'), 10));
+        startAuto();
+      });
+    });
+
+    startAuto();
+  })();
+
+  /* ----------------------------------------------------------
+     SMOOTH SCROLL
+  ---------------------------------------------------------- */
+  document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      var target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        var offset = 80;
+        var top = target.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top: top, behavior: 'smooth' });
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
