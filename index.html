@@ -402,6 +402,7 @@
       display: flex;
       align-items: center;
       overflow: hidden;
+      background: url('wattle-hero.jpg') center center / cover no-repeat;
     }
     .hero-bg {
       position: absolute;
@@ -410,6 +411,13 @@
       height: 100%;
       object-fit: cover;
       object-position: center center;
+    }
+    /* Hide Safari/iOS native play button on autoplay-blocked videos */
+    video::-webkit-media-controls-panel,
+    video::-webkit-media-controls-start-playback-button,
+    video::-webkit-media-controls {
+      display: none !important;
+      -webkit-appearance: none !important;
     }
     .hero-overlay {
       position: absolute;
@@ -1574,7 +1582,7 @@
 ============================================================ -->
 <section id="hero" aria-label="Hero">
   <!-- Video background -->
-  <video class="hero-bg" id="hero-bg" autoplay muted loop playsinline preload="auto" poster="wattle-hero.jpg" style="object-fit:cover;">
+  <video class="hero-bg" id="hero-bg" autoplay muted loop playsinline preload="auto" disableRemotePlayback webkit-playsinline style="object-fit:cover;">
     <source src="video-wattle-landscape.mp4" type="video/mp4">
   </video>
   <div class="hero-overlay"></div>
