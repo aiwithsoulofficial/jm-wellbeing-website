@@ -2100,18 +2100,41 @@
       setTimeout(function () {
         loader.style.display = 'none';
         document.body.style.overflow = '';
-
-        /* Ensure hero video plays after loader clears */
-        var heroVid = document.getElementById('hero-bg');
-        if (heroVid) {
-          heroVid.muted = true;
-          heroVid.play().catch(function () {});
-        }
-
         initReveal();
         initCounters();
       }, 900);
     }, 1600);
+  })();
+
+  /* ----------------------------------------------------------
+     VIDEO AUTOPLAY (force all background videos to play)
+  ---------------------------------------------------------- */
+  (function () {
+    var videos = document.querySelectorAll('video[autoplay]');
+    function forcePlay() {
+      videos.forEach(function (v) {
+        v.muted = true;
+        v.setAttribute('muted', '');
+        v.setAttribute('playsinline', '');
+        v.play().catch(function () {});
+      });
+    }
+    forcePlay();
+    document.addEventListener('visibilitychange', function () {
+      if (!document.hidden) forcePlay();
+    });
+    window.addEventListener('scroll', function once() {
+      forcePlay();
+      window.removeEventListener('scroll', once);
+    }, { passive: true });
+    window.addEventListener('touchstart', function once() {
+      forcePlay();
+      window.removeEventListener('touchstart', once);
+    }, { passive: true });
+    window.addEventListener('click', function once() {
+      forcePlay();
+      window.removeEventListener('click', once);
+    });
   })();
 
   /* ----------------------------------------------------------
