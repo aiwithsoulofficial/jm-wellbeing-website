@@ -1574,7 +1574,7 @@
 ============================================================ -->
 <section id="hero" aria-label="Hero">
   <!-- Video background -->
-  <video class="hero-bg" id="hero-bg" autoplay muted loop playsinline poster="wattle-hero.jpg" style="object-fit:cover;">
+  <video class="hero-bg" id="hero-bg" autoplay muted loop playsinline preload="auto" poster="wattle-hero.jpg" style="object-fit:cover;">
     <source src="video-wattle-landscape.mp4" type="video/mp4">
   </video>
   <div class="hero-overlay"></div>
@@ -2100,6 +2100,14 @@
       setTimeout(function () {
         loader.style.display = 'none';
         document.body.style.overflow = '';
+
+        /* Ensure hero video plays after loader clears */
+        var heroVid = document.getElementById('hero-bg');
+        if (heroVid) {
+          heroVid.muted = true;
+          heroVid.play().catch(function () {});
+        }
+
         initReveal();
         initCounters();
       }, 900);
