@@ -1,0 +1,1621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calmer Pathways - 6-Week Group Program | Jacqui McGregor Wellbeing</title>
+  <meta name="description" content="A 6-week group program for overwhelmed mums who've tried everything. Nervous system regulation that actually works - at the body level, not the mindset level. Next cohort starts 15 May 2026." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       RESET & BASE
+    ============================================================ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --walnut:       #4A3728;
+      --sage:         #6B8F71;
+      --forest:       #4A7A5A;
+      --cream:        #F7F3ED;
+      --dark-earth:   #2D2418;
+      --drift-sand:   #D4C5A9;
+      --white:        #FFFFFF;
+
+      --font-heading: 'Cormorant Garamond', Georgia, serif;
+      --font-body:    'Work Sans', system-ui, sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 1rem;
+      line-height: 1.75;
+      color: var(--dark-earth);
+      background-color: var(--cream);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ============================================================
+       GRAIN OVERLAY
+    ============================================================ */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-size: 200px 200px;
+    }
+
+    /* ============================================================
+       TYPOGRAPHY SYSTEM
+    ============================================================ */
+    h1, h2, h3, h4 {
+      font-family: var(--font-heading);
+      font-weight: 300;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+    }
+
+    h1 { font-size: clamp(2.6rem, 6vw, 4.8rem); }
+    h2 { font-size: clamp(2rem, 4vw, 3.2rem); }
+    h3 { font-size: clamp(1.5rem, 3vw, 2.2rem); }
+    h4 { font-size: clamp(1.2rem, 2.5vw, 1.6rem); font-weight: 500; }
+
+    p {
+      font-size: clamp(0.95rem, 1.8vw, 1.05rem);
+      line-height: 1.8;
+      max-width: 64ch;
+    }
+
+    a {
+      color: var(--sage);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    a:hover {
+      color: var(--forest);
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* ============================================================
+       UTILITY CLASSES
+    ============================================================ */
+    .label {
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--sage);
+    }
+
+    .container {
+      width: 100%;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    .container--narrow {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    .section {
+      padding: 5rem 0;
+    }
+
+    .section--tight {
+      padding: 3.5rem 0;
+    }
+
+    .divider {
+      width: 48px;
+      height: 1px;
+      background-color: var(--drift-sand);
+      margin: 1.5rem 0;
+    }
+
+    .divider--center {
+      margin: 1.5rem auto;
+    }
+
+    .divider--sage {
+      background-color: var(--sage);
+      opacity: 0.5;
+    }
+
+    /* ============================================================
+       BUTTONS
+    ============================================================ */
+    .btn {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 0.95rem;
+      letter-spacing: 0.06em;
+      padding: 0.9rem 2.4rem;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      text-decoration: none;
+      border: none;
+    }
+
+    .btn--primary {
+      background-color: var(--forest);
+      color: var(--cream);
+    }
+
+    .btn--primary:hover {
+      background-color: #3d6849;
+      color: var(--cream);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(74, 122, 90, 0.25);
+    }
+
+    .btn--outline-light {
+      background-color: transparent;
+      color: var(--cream);
+      border: 1px solid rgba(247, 243, 237, 0.5);
+    }
+
+    .btn--outline-light:hover {
+      background-color: rgba(247, 243, 237, 0.1);
+      color: var(--cream);
+      border-color: var(--cream);
+    }
+
+    /* ============================================================
+       NAV
+    ============================================================ */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: transparent;
+      transition: background 0.35s ease, padding 0.35s ease;
+    }
+
+    .nav.scrolled {
+      background: rgba(74, 55, 40, 0.96);
+      backdrop-filter: blur(6px);
+      padding: 0.65rem 1.5rem;
+    }
+
+    .nav__brand {
+      font-family: var(--font-heading);
+      font-weight: 300;
+      font-size: 1.1rem;
+      color: var(--cream);
+      letter-spacing: 0.03em;
+    }
+
+    .nav__brand:hover {
+      color: var(--drift-sand);
+    }
+
+    .nav__cta {
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--cream);
+      border: 1px solid rgba(247, 243, 237, 0.4);
+      padding: 0.45rem 1.1rem;
+      border-radius: 2px;
+      transition: all 0.2s ease;
+    }
+
+    .nav__cta:hover {
+      background: rgba(247, 243, 237, 0.12);
+      color: var(--cream);
+      border-color: rgba(247, 243, 237, 0.75);
+    }
+
+    /* ============================================================
+       HERO - VIDEO BACKGROUND
+    ============================================================ */
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: url('wattle-hero.jpg') center center / cover no-repeat var(--walnut);
+    }
+
+    .hero__video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+    }
+
+    /* Hide Safari/iOS native play button on autoplay-blocked videos */
+    video::-webkit-media-controls-panel,
+    video::-webkit-media-controls-start-playback-button,
+    video::-webkit-media-controls {
+      display: none !important;
+      -webkit-appearance: none !important;
+    }
+
+    .hero__overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(45, 36, 24, 0.48) 0%,
+        rgba(74, 55, 40, 0.62) 50%,
+        rgba(45, 36, 24, 0.72) 100%
+      );
+    }
+
+    .hero__content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 7rem 1.5rem 4rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .hero__date-badge {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--drift-sand);
+      border: 1px solid rgba(212, 197, 169, 0.45);
+      padding: 0.45rem 1rem;
+      border-radius: 2px;
+      margin-bottom: 1.75rem;
+    }
+
+    .hero__heading {
+      font-family: var(--font-heading);
+      font-weight: 300;
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      line-height: 1.1;
+      color: var(--cream);
+      margin-bottom: 1.25rem;
+    }
+
+    .hero__heading em {
+      font-style: italic;
+      color: var(--drift-sand);
+    }
+
+    .hero__sub {
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      color: rgba(247, 243, 237, 0.82);
+      margin-bottom: 2.5rem;
+      max-width: 54ch;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero__actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .hero__scroll {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      color: rgba(247, 243, 237, 0.5);
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      animation: scrollBounce 2.5s ease-in-out infinite;
+    }
+
+    .hero__scroll svg {
+      width: 16px;
+      height: 16px;
+      stroke: rgba(247, 243, 237, 0.5);
+    }
+
+    @keyframes scrollBounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50%       { transform: translateX(-50%) translateY(5px); }
+    }
+
+    /* ============================================================
+       IS THIS YOU SECTION
+    ============================================================ */
+    .is-this-you {
+      background-color: var(--cream);
+      padding: 5.5rem 0;
+    }
+
+    .is-this-you__inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .is-this-you__text .label {
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+
+    .is-this-you__text h2 {
+      color: var(--walnut);
+      margin-bottom: 1.25rem;
+    }
+
+    .is-this-you__text p {
+      color: var(--dark-earth);
+      margin-bottom: 1rem;
+    }
+
+    .is-this-you__text p:last-child {
+      margin-bottom: 0;
+    }
+
+    .is-this-you__image {
+      position: relative;
+    }
+
+    .is-this-you__image img {
+      width: 100%;
+      height: 480px;
+      object-fit: cover;
+      object-position: center top;
+      border-radius: 2px;
+    }
+
+    .is-this-you__image::before {
+      content: '';
+      position: absolute;
+      inset: -8px -8px auto auto;
+      width: 60%;
+      height: 60%;
+      border-top: 1px solid var(--drift-sand);
+      border-right: 1px solid var(--drift-sand);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* ============================================================
+       WHAT IT IS SECTION
+    ============================================================ */
+    .what-it-is {
+      background-color: var(--walnut);
+      padding: 5.5rem 0;
+    }
+
+    .what-it-is__inner {
+      text-align: center;
+    }
+
+    .what-it-is__inner .label {
+      color: var(--drift-sand);
+      opacity: 0.75;
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+
+    .what-it-is__inner h2 {
+      color: var(--cream);
+      margin-bottom: 1rem;
+    }
+
+    .what-it-is__intro {
+      color: rgba(247, 243, 237, 0.82);
+      max-width: 58ch;
+      margin: 0 auto 3rem;
+      font-size: 1.05rem;
+    }
+
+    .pillars {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      text-align: left;
+    }
+
+    .pillar {
+      background-color: rgba(247, 243, 237, 0.06);
+      border: 1px solid rgba(212, 197, 169, 0.18);
+      border-radius: 3px;
+      padding: 1.75rem;
+    }
+
+    .pillar__number {
+      font-family: var(--font-heading);
+      font-size: 3rem;
+      font-weight: 300;
+      color: rgba(212, 197, 169, 0.3);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .pillar__title {
+      font-family: var(--font-heading);
+      font-weight: 500;
+      font-size: 1.35rem;
+      color: var(--cream);
+      margin-bottom: 0.6rem;
+    }
+
+    .pillar__body {
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 0.92rem;
+      line-height: 1.7;
+      color: rgba(247, 243, 237, 0.72);
+    }
+
+    /* ============================================================
+       WEEK BY WEEK
+    ============================================================ */
+    .weeks {
+      background-color: var(--cream);
+      padding: 5.5rem 0;
+    }
+
+    .weeks__header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+
+    .weeks__header .label {
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+
+    .weeks__header h2 {
+      color: var(--walnut);
+    }
+
+    .weeks__header p {
+      color: var(--dark-earth);
+      opacity: 0.75;
+      margin: 1rem auto 0;
+      text-align: center;
+    }
+
+    .weeks__grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      background-color: var(--drift-sand);
+      border: 1px solid var(--drift-sand);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .week-card {
+      background-color: var(--cream);
+      padding: 2rem 2rem 2rem 1.75rem;
+      position: relative;
+    }
+
+    .week-card::before {
+      content: attr(data-week);
+      position: absolute;
+      top: 1.5rem;
+      right: 1.75rem;
+      font-family: var(--font-heading);
+      font-size: 4rem;
+      font-weight: 300;
+      color: rgba(212, 197, 169, 0.35);
+      line-height: 1;
+    }
+
+    .week-card h4 {
+      font-family: var(--font-heading);
+      font-weight: 500;
+      font-size: 1.3rem;
+      color: var(--walnut);
+      margin-bottom: 0.5rem;
+      padding-right: 3rem;
+    }
+
+    .week-card__label {
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .week-card p {
+      font-size: 0.92rem;
+      line-height: 1.7;
+      color: var(--dark-earth);
+      opacity: 0.8;
+    }
+
+    /* ============================================================
+       AFTER 6 WEEKS
+    ============================================================ */
+    .after {
+      background-color: #EDE8E0;
+      padding: 5.5rem 0;
+    }
+
+    .after__inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .after__image img {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+      object-position: center top;
+      border-radius: 2px;
+    }
+
+    .after__content .label {
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+
+    .after__content h2 {
+      color: var(--walnut);
+      margin-bottom: 1.5rem;
+    }
+
+    .after__quotes {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .after__quote {
+      border-left: 2px solid var(--sage);
+      padding-left: 1.2rem;
+    }
+
+    .after__quote p {
+      font-family: var(--font-heading);
+      font-weight: 300;
+      font-style: italic;
+      font-size: clamp(1.05rem, 2vw, 1.3rem);
+      color: var(--dark-earth);
+      line-height: 1.6;
+    }
+
+    /* ============================================================
+       ABOUT JACQUI
+    ============================================================ */
+    .about {
+      background-color: var(--walnut);
+      padding: 5.5rem 0;
+    }
+
+    .about__inner {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .about__image-wrap {
+      position: relative;
+    }
+
+    .about__image-wrap img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      object-position: center top;
+      border-radius: 2px;
+    }
+
+    .about__badge {
+      position: absolute;
+      bottom: -1rem;
+      right: -1rem;
+      width: 88px;
+      height: 88px;
+      object-fit: contain;
+      border-radius: 50%;
+      background-color: var(--cream);
+      padding: 6px;
+    }
+
+    .about__content .label {
+      color: var(--drift-sand);
+      opacity: 0.7;
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+
+    .about__content h2 {
+      color: var(--cream);
+      margin-bottom: 1.25rem;
+    }
+
+    .about__content p {
+      color: rgba(247, 243, 237, 0.8);
+      margin-bottom: 1rem;
+    }
+
+    .about__content p:last-child {
+      margin-bottom: 0;
+    }
+
+    .about__cpc {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-top: 1.5rem;
+      padding: 0.6rem 1rem;
+      border: 1px solid rgba(212, 197, 169, 0.25);
+      border-radius: 2px;
+    }
+
+    .about__cpc img {
+      width: 28px;
+      height: 28px;
+      object-fit: contain;
+    }
+
+    .about__cpc span {
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 0.8rem;
+      color: var(--drift-sand);
+      letter-spacing: 0.04em;
+    }
+
+    /* ============================================================
+       DETAILS & PRICING
+    ============================================================ */
+    .details {
+      background-color: var(--cream);
+      padding: 5.5rem 0;
+    }
+
+    .details__header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+
+    .details__header .label {
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+
+    .details__header h2 {
+      color: var(--walnut);
+    }
+
+    .details__grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .details__card {
+      background-color: var(--walnut);
+      border-radius: 3px;
+      padding: 2.5rem;
+      color: var(--cream);
+    }
+
+    .details__price {
+      font-family: var(--font-heading);
+      font-size: 4.5rem;
+      font-weight: 300;
+      color: var(--cream);
+      line-height: 1;
+      margin-bottom: 0.25rem;
+    }
+
+    .details__price-label {
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 0.88rem;
+      color: var(--drift-sand);
+      margin-bottom: 2rem;
+    }
+
+    .details__list {
+      list-style: none;
+      margin-bottom: 2rem;
+    }
+
+    .details__list li {
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 0.95rem;
+      color: rgba(247, 243, 237, 0.82);
+      padding: 0.6rem 0;
+      border-bottom: 1px solid rgba(212, 197, 169, 0.12);
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+
+    .details__list li:last-child {
+      border-bottom: none;
+    }
+
+    .details__list li::before {
+      content: '';
+      display: block;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background-color: var(--sage);
+      flex-shrink: 0;
+      margin-top: 0.52rem;
+    }
+
+    .details__sliding-scale {
+      background-color: rgba(107, 143, 113, 0.15);
+      border: 1px solid rgba(107, 143, 113, 0.3);
+      border-radius: 2px;
+      padding: 1rem 1.25rem;
+    }
+
+    .details__sliding-scale p {
+      font-size: 0.88rem;
+      color: rgba(247, 243, 237, 0.8);
+      line-height: 1.6;
+    }
+
+    .details__sliding-scale strong {
+      color: var(--cream);
+      font-weight: 500;
+      display: block;
+      margin-bottom: 0.25rem;
+      font-size: 0.82rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .details__dates {
+      background-color: #EDE8E0;
+      border-radius: 3px;
+      padding: 2.5rem;
+    }
+
+    .details__dates h3 {
+      font-family: var(--font-heading);
+      font-weight: 500;
+      font-size: 1.4rem;
+      color: var(--walnut);
+      margin-bottom: 1.5rem;
+    }
+
+    .date-item {
+      margin-bottom: 1.25rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid var(--drift-sand);
+    }
+
+    .date-item:last-of-type {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .date-item__label {
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 0.25rem;
+    }
+
+    .date-item__value {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      font-weight: 400;
+      color: var(--walnut);
+    }
+
+    .date-item__note {
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      font-weight: 300;
+      color: var(--dark-earth);
+      opacity: 0.7;
+      margin-top: 0.2rem;
+    }
+
+    /* ============================================================
+       CTA SECTION - VIDEO BACKGROUND
+    ============================================================ */
+    .cta-section {
+      position: relative;
+      min-height: 80vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background-color: var(--dark-earth);
+    }
+
+    .cta-section__video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    .cta-section__overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(45, 36, 24, 0.6) 0%,
+        rgba(45, 36, 24, 0.72) 100%
+      );
+    }
+
+    .cta-section__content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 4rem 1.5rem;
+      max-width: 660px;
+      margin: 0 auto;
+    }
+
+    .cta-section__content .label {
+      color: var(--drift-sand);
+      opacity: 0.75;
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+
+    .cta-section__content h2 {
+      font-family: var(--font-heading);
+      font-weight: 300;
+      color: var(--cream);
+      margin-bottom: 1rem;
+    }
+
+    .cta-section__content p {
+      color: rgba(247, 243, 237, 0.78);
+      max-width: 50ch;
+      margin: 0 auto 2.5rem;
+      font-size: 1.05rem;
+    }
+
+    .cta-section__note {
+      margin-top: 1.5rem;
+      font-size: 0.82rem !important;
+      color: rgba(247, 243, 237, 0.5) !important;
+    }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    .footer {
+      background-color: var(--dark-earth);
+      padding: 3rem 0 2rem;
+      border-top: 1px solid rgba(74, 55, 40, 0.6);
+    }
+
+    .footer__inner {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2rem;
+      align-items: end;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(212, 197, 169, 0.1);
+      margin-bottom: 1.75rem;
+    }
+
+    .footer__brand {
+      font-family: var(--font-heading);
+      font-weight: 300;
+      font-size: 1.5rem;
+      color: var(--cream);
+      margin-bottom: 0.25rem;
+    }
+
+    .footer__tagline {
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      font-weight: 300;
+      color: var(--drift-sand);
+      opacity: 0.7;
+    }
+
+    .footer__links {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .footer__links a {
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      font-weight: 300;
+      color: rgba(212, 197, 169, 0.6);
+      letter-spacing: 0.04em;
+    }
+
+    .footer__links a:hover {
+      color: var(--drift-sand);
+    }
+
+    .footer__bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .footer__copy {
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      font-weight: 300;
+      color: rgba(212, 197, 169, 0.4);
+    }
+
+    .footer__cpc {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .footer__cpc img {
+      width: 22px;
+      height: 22px;
+      object-fit: contain;
+      opacity: 0.7;
+    }
+
+    .footer__cpc span {
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 300;
+      color: rgba(212, 197, 169, 0.4);
+    }
+
+    /* ============================================================
+       WATTLE TEXTURE DIVIDER
+    ============================================================ */
+    .wattle-divider {
+      width: 100%;
+      height: 120px;
+      background-image: url('wattle-texture.jpg');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.18;
+      pointer-events: none;
+    }
+
+    /* ============================================================
+       RESPONSIVE - 600px BREAKPOINT
+    ============================================================ */
+    @media (max-width: 600px) {
+      .section { padding: 3.5rem 0; }
+
+      .nav__brand { font-size: 0.95rem; }
+      .nav__cta { font-size: 0.75rem; padding: 0.4rem 0.85rem; }
+
+      .hero__content {
+        padding: 6rem 1.25rem 3rem;
+      }
+
+      .hero__heading {
+        font-size: 2.6rem;
+      }
+
+      .hero__actions {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .hero__actions .btn {
+        width: 100%;
+        max-width: 320px;
+        text-align: center;
+      }
+
+      /* Stack two-col layouts */
+      .is-this-you__inner,
+      .after__inner,
+      .about__inner,
+      .details__grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      /* Image order flip for mobile */
+      .is-this-you__image { order: -1; }
+
+      .is-this-you__image img { height: 280px; }
+      .after__image img { height: 300px; }
+
+      .about__image-wrap {
+        max-width: 280px;
+        margin: 0 auto;
+      }
+
+      .pillars {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .weeks__grid {
+        grid-template-columns: 1fr;
+      }
+
+      .week-card::before {
+        font-size: 3rem;
+      }
+
+      .details__price {
+        font-size: 3.5rem;
+      }
+
+      .footer__inner {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        align-items: start;
+      }
+
+      .footer__bottom {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    /* ============================================================
+       MEDIUM - up to 800px
+    ============================================================ */
+    @media (max-width: 800px) and (min-width: 601px) {
+      .pillars {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .weeks__grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about__inner {
+        grid-template-columns: 1fr 2fr;
+        gap: 2.5rem;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       NAV
+  ============================================================ -->
+  <nav class="nav" id="site-nav" aria-label="Site navigation">
+    <a href="#" class="nav__brand">Jacqui McGregor Wellbeing</a>
+    <a href="https://clientportal.zandahealth.com/clientportal/jmwellbeing" class="nav__cta" target="_blank" rel="noopener">Book a spot</a>
+  </nav>
+
+
+  <!-- ============================================================
+       HERO
+  ============================================================ -->
+  <section class="hero" aria-label="Hero - Calmer Pathways program">
+    <video
+      class="hero__video"
+      autoplay
+      muted
+      loop
+      playsinline
+      webkit-playsinline
+      preload="auto"
+      disableRemotePlayback
+      aria-hidden="true"
+    >
+      <source src="video-koala.mp4" type="video/mp4" />
+    </video>
+    <div class="hero__overlay" aria-hidden="true"></div>
+
+    <div class="hero__content">
+      <div class="hero__date-badge" role="note">Next cohort starts 15 May 2026</div>
+      <h1 class="hero__heading">
+        From depleted<br />to <em>lighter</em><br />in 6 weeks.
+      </h1>
+      <p class="hero__sub">
+        A small group program for overwhelmed mums who've tried everything and still feel like nothing's working. We start at the body, not the mindset.
+      </p>
+      <div class="hero__actions">
+        <a
+          href="https://clientportal.zandahealth.com/clientportal/jmwellbeing"
+          class="btn btn--primary"
+          target="_blank"
+          rel="noopener"
+          aria-label="Book your spot in Calmer Pathways"
+        >
+          Book your spot
+        </a>
+        <a href="#details" class="btn btn--outline-light">See the details</a>
+      </div>
+    </div>
+
+    <div class="hero__scroll" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+      </svg>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       IS THIS YOU
+  ============================================================ -->
+  <section class="is-this-you section" id="is-this-you" aria-labelledby="is-this-you-heading">
+    <div class="container">
+      <div class="is-this-you__inner">
+        <div class="is-this-you__text">
+          <span class="label">Sound familiar?</span>
+          <h2 id="is-this-you-heading">Is this you?</h2>
+          <div class="divider divider--sage"></div>
+          <p>
+            You're carrying everything. The school runs, the appointments, the invisible list of things no one else notices until they're not done. You're working, you're parenting, you're trying to hold it all together - and somewhere along the way you stopped being a person and became a function.
+          </p>
+          <p>
+            You've tried the books. You've listened to the podcasts. You wrote the gratitude journal for three days in a row before it slid under the bed. The affirmations felt hollow. Nothing landed. Not because you weren't trying hard enough - because none of it actually addressed what's happening in your body.
+          </p>
+          <p>
+            The exhaustion isn't in your head. It's in your nervous system. And that's what we work with here.
+          </p>
+        </div>
+        <div class="is-this-you__image">
+          <img
+            src="photo-jacqui-2.jpg"
+            alt="A quiet, grounded moment - natural light, warm tones"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       WHAT CALMER PATHWAYS IS
+  ============================================================ -->
+  <section class="what-it-is section" id="about-program" aria-labelledby="what-it-is-heading">
+    <div class="container">
+      <div class="what-it-is__inner">
+        <span class="label">What this is</span>
+        <h2 id="what-it-is-heading">Calmer Pathways</h2>
+        <div class="divider divider--center" style="background-color: rgba(212,197,169,0.3); width: 48px; height: 1px; margin: 1rem auto 1.5rem;"></div>
+        <p class="what-it-is__intro">
+          A 6-week small group program on Zoom. Real tools, real conversation, real calm - not the performed kind.
+        </p>
+
+        <div class="pillars" role="list">
+          <div class="pillar" role="listitem">
+            <div class="pillar__number" aria-hidden="true">01</div>
+            <div class="pillar__title">Body first, not mindset</div>
+            <p class="pillar__body">
+              We work at the nervous system level. Not affirmations, not positive thinking. Your body holds the tension - your body is where the shift happens.
+            </p>
+          </div>
+          <div class="pillar" role="listitem">
+            <div class="pillar__number" aria-hidden="true">02</div>
+            <div class="pillar__title">Small group, held space</div>
+            <p class="pillar__body">
+              You're not alone in a room full of strangers. It's a small group - enough space to breathe, enough connection to feel seen. Jacqui holds the room.
+            </p>
+          </div>
+          <div class="pillar" role="listitem">
+            <div class="pillar__number" aria-hidden="true">03</div>
+            <div class="pillar__title">Simple and practical</div>
+            <p class="pillar__body">
+              No worksheets you'll never finish. No homework that adds to your load. Simple, practical tools you can actually use on a Tuesday when everything's going sideways.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       WEEK BY WEEK
+  ============================================================ -->
+  <section class="weeks section" id="what-youll-experience" aria-labelledby="weeks-heading">
+    <div class="container">
+      <div class="weeks__header">
+        <span class="label">What to expect</span>
+        <h2 id="weeks-heading">What you'll experience</h2>
+        <p>
+          Each week builds gently on the one before. There's no rush, no pressure to be anywhere but where you are. This is your pace.
+        </p>
+      </div>
+
+      <div class="weeks__grid" role="list">
+        <article class="week-card" data-week="1" role="listitem">
+          <span class="week-card__label">Week One</span>
+          <h4>Where you actually are</h4>
+          <p>
+            Understanding what's going on in your nervous system - not as a diagnosis, just as information. Knowing what's happening is the first step to changing it.
+          </p>
+        </article>
+
+        <article class="week-card" data-week="2" role="listitem">
+          <span class="week-card__label">Week Two</span>
+          <h4>Recognising your patterns</h4>
+          <p>
+            Starting to notice the moments that tip you over. Not to judge them - just to see them clearly. When you can see the pattern, you stop being ruled by it.
+          </p>
+        </article>
+
+        <article class="week-card" data-week="3" role="listitem">
+          <span class="week-card__label">Week Three</span>
+          <h4>Finding your way back</h4>
+          <p>
+            Simple regulation tools that actually work for your body. Not a one-size-fits-all prescription - your own small toolkit you can reach for when things get heavy.
+          </p>
+        </article>
+
+        <article class="week-card" data-week="4" role="listitem">
+          <span class="week-card__label">Week Four</span>
+          <h4>The invisible load</h4>
+          <p>
+            What you're carrying that no one else sees. Making space to name it - not to fix it immediately, but to stop pretending it doesn't weigh anything.
+          </p>
+        </article>
+
+        <article class="week-card" data-week="5" role="listitem">
+          <span class="week-card__label">Week Five</span>
+          <h4>Building your pace</h4>
+          <p>
+            What does "steadier" actually look like for your life? Not a perfect version of someone else's routine. Yours. Real, workable, kinder to you.
+          </p>
+        </article>
+
+        <article class="week-card" data-week="6" role="listitem">
+          <span class="week-card__label">Week Six</span>
+          <h4>Coming home to yourself</h4>
+          <p>
+            Bringing it together. Not an ending - a landing. You'll leave with your own regulation toolkit and a clearer sense of what you actually need.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       AFTER 6 WEEKS
+  ============================================================ -->
+  <section class="after section" id="after" aria-labelledby="after-heading">
+    <div class="container">
+      <div class="after__inner">
+        <div class="after__image">
+          <img
+            src="photo-jacqui-3.jpg"
+            alt="A quieter, lighter feeling - warmth and ease"
+            loading="lazy"
+          />
+        </div>
+        <div class="after__content">
+          <span class="label">Six weeks from now</span>
+          <h2 id="after-heading">What lighter actually feels like</h2>
+          <div class="divider divider--sage"></div>
+
+          <div class="after__quotes" role="list" aria-label="What participants experience">
+            <blockquote class="after__quote" role="listitem">
+              <p>"I feel lighter. Not fixed - lighter. Like I can breathe again."</p>
+            </blockquote>
+            <blockquote class="after__quote" role="listitem">
+              <p>"I can handle the day. Not every day perfectly - but I can handle it."</p>
+            </blockquote>
+            <blockquote class="after__quote" role="listitem">
+              <p>"I'm giving myself permission to take time for myself. And I don't feel guilty about it anymore."</p>
+            </blockquote>
+            <blockquote class="after__quote" role="listitem">
+              <p>"I understand what's happening in my body now. That changes everything."</p>
+            </blockquote>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       ABOUT JACQUI
+  ============================================================ -->
+  <section class="about section" id="about-jacqui" aria-labelledby="about-heading">
+    <div class="container">
+      <div class="about__inner">
+        <div class="about__image-wrap">
+          <img
+            src="photo-jacqui-1.jpg"
+            alt="Jacqui McGregor - warm, grounded, real"
+            loading="lazy"
+          />
+          <img
+            class="about__badge"
+            src="cpc-badge.png"
+            alt="Certified Practising Counsellor badge"
+            loading="lazy"
+          />
+        </div>
+
+        <div class="about__content">
+          <span class="label">Your guide</span>
+          <h2 id="about-heading">Hi, I'm Jacqui.</h2>
+          <div class="divider" style="background-color: rgba(212,197,169,0.3);"></div>
+          <p>
+            I'm a Certified Practising Counsellor, and I work with overwhelmed mums who've tried the self-help circuit and still feel like they're failing at their own life. I know that feeling. I've sat in it.
+          </p>
+          <p>
+            I'm not a wellness influencer. I don't have a ring light and a colour-coded morning routine. What I have is a genuine ability to hold space for the mess - and the training to help you work through it at the body level, not just the thinking level.
+          </p>
+          <p>
+            I work with what's real. What's actually happening for you - not what you think you should be feeling. Nothing is too small, too messy or too much.
+          </p>
+          <div class="about__cpc" role="note" aria-label="Certification: Certified Practising Counsellor">
+            <img src="cpc-badge.png" alt="" aria-hidden="true" />
+            <span>Certified Practising Counsellor</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       DETAILS & PRICING
+  ============================================================ -->
+  <section class="details section" id="details" aria-labelledby="details-heading">
+    <div class="container">
+      <div class="details__header">
+        <span class="label">The details</span>
+        <h2 id="details-heading">What's included and when</h2>
+      </div>
+
+      <div class="details__grid">
+        <div class="details__card">
+          <div class="details__price" aria-label="Price: $495">$495</div>
+          <p class="details__price-label">6-week group program</p>
+
+          <ul class="details__list" aria-label="Program inclusions">
+            <li>6 live group sessions via Zoom</li>
+            <li>Small group size - you'll actually be seen</li>
+            <li>Simple, practical regulation tools</li>
+            <li>Your own regulation toolkit to keep</li>
+            <li>Session recordings available after each week</li>
+            <li>Ongoing support in the group between sessions</li>
+          </ul>
+
+          <div class="details__sliding-scale" role="note" aria-label="Sliding scale pricing information">
+            <strong>Sliding scale available</strong>
+            <p>
+              Healthcare card holders are welcome to reach out about a reduced rate. No shame, no hoops. Just get in touch before booking and we'll sort it out.
+            </p>
+          </div>
+        </div>
+
+        <div class="details__dates">
+          <h3>Next cohort</h3>
+
+          <div class="date-item">
+            <div class="date-item__label">First session</div>
+            <div class="date-item__value">Friday 15 May 2026</div>
+            <div class="date-item__note">7:00 pm - online via Zoom</div>
+          </div>
+
+          <div class="date-item">
+            <div class="date-item__label">Ongoing sessions</div>
+            <div class="date-item__value">Saturdays, 10:00 am</div>
+            <div class="date-item__note">6 weeks from 15 May 2026</div>
+          </div>
+
+          <div class="date-item">
+            <div class="date-item__label">Format</div>
+            <div class="date-item__value">Small group via Zoom</div>
+            <div class="date-item__note">From anywhere - your couch is fine</div>
+          </div>
+
+          <div class="date-item">
+            <div class="date-item__label">Booking</div>
+            <div class="date-item__value">Zanda Health portal</div>
+            <div class="date-item__note">Secure online booking - Jacqui McGregor Wellbeing</div>
+          </div>
+
+          <div style="margin-top: 1.75rem;">
+            <a
+              href="https://clientportal.zandahealth.com/clientportal/jmwellbeing"
+              class="btn btn--primary"
+              target="_blank"
+              rel="noopener"
+              style="width: 100%; text-align: center; display: block;"
+              aria-label="Book your spot in Calmer Pathways"
+            >
+              Book your spot
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       CTA - VIDEO BACKGROUND
+  ============================================================ -->
+  <section class="cta-section" id="book" aria-labelledby="cta-heading">
+    <video
+      class="cta-section__video"
+      autoplay
+      muted
+      loop
+      playsinline
+      webkit-playsinline
+      preload="auto"
+      disableRemotePlayback
+      aria-hidden="true"
+    >
+      <source src="video-shores.mp4" type="video/mp4" />
+    </video>
+    <div class="cta-section__overlay" aria-hidden="true"></div>
+
+    <div class="cta-section__content">
+      <span class="label">When you're ready</span>
+      <h2 id="cta-heading">You don't have to carry it alone.</h2>
+      <p>
+        When it feels like the right time - not because you've got your act together, but just because you're ready to try something different - the spot is here.
+      </p>
+      <a
+        href="https://clientportal.zandahealth.com/clientportal/jmwellbeing"
+        class="btn btn--primary"
+        target="_blank"
+        rel="noopener"
+        aria-label="Book your spot in Calmer Pathways via Zanda Health"
+      >
+        Book your spot - $495
+      </a>
+      <p class="cta-section__note">
+        Sliding scale available for healthcare card holders - reach out before booking.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__inner">
+        <div>
+          <div class="footer__brand">Jacqui McGregor Wellbeing</div>
+          <div class="footer__tagline">Come home to yourself.</div>
+        </div>
+        <nav class="footer__links" aria-label="Footer links">
+          <a href="https://jmwellbeing.com.au" target="_blank" rel="noopener">jmwellbeing.com.au</a>
+          <a href="https://www.instagram.com/jmwellbeing" target="_blank" rel="noopener">@jmwellbeing</a>
+          <a href="https://clientportal.zandahealth.com/clientportal/jmwellbeing" target="_blank" rel="noopener">Book now</a>
+        </nav>
+      </div>
+
+      <div class="footer__bottom">
+        <p class="footer__copy">&copy; 2026 Jacqui McGregor Wellbeing. All rights reserved.</p>
+        <div class="footer__cpc" role="note" aria-label="Certified Practising Counsellor">
+          <img src="cpc-badge.png" alt="CPC badge" />
+          <span>Certified Practising Counsellor</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ============================================================
+       JS - NAV SCROLL STATE
+  ============================================================ -->
+  <script>
+    (function () {
+      var nav = document.getElementById('site-nav');
+      if (!nav) return;
+
+      function onScroll() {
+        if (window.scrollY > 60) {
+          nav.classList.add('scrolled');
+        } else {
+          nav.classList.remove('scrolled');
+        }
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    })();
+
+    /* Video autoplay fallback for Safari/iOS */
+    (function () {
+      var videos = document.querySelectorAll('video[autoplay]');
+      function forcePlay() {
+        videos.forEach(function (v) {
+          v.muted = true;
+          v.setAttribute('muted', '');
+          v.setAttribute('playsinline', '');
+          v.play().catch(function () {});
+        });
+      }
+      forcePlay();
+      document.addEventListener('visibilitychange', function () {
+        if (!document.hidden) forcePlay();
+      });
+      window.addEventListener('scroll', function once() {
+        forcePlay();
+        window.removeEventListener('scroll', once);
+      }, { passive: true });
+      window.addEventListener('touchstart', function once() {
+        forcePlay();
+        window.removeEventListener('touchstart', once);
+      }, { passive: true });
+      window.addEventListener('click', function once() {
+        forcePlay();
+        window.removeEventListener('click', once);
+      });
+    })();
+  </script>
+
+</body>
+</html>
