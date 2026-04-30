@@ -684,17 +684,19 @@
       overflow: hidden;
       box-shadow: var(--shadow-hover);
     }
-    .about-photo img {
+    .about-photo img,
+    .about-photo video {
       width: 100%;
       height: auto;
       max-height: 600px;
       object-fit: contain;
       object-position: center top;
       display: block;
-      background-color: var(--linen);
+      background-color: var(--walnut);
+      border-radius: 4px;
     }
     @media (max-width: 900px) {
-      .about-photo img { max-height: 450px; }
+      .about-photo img, .about-photo video { max-height: 450px; }
     }
 
     /* Badge */
@@ -1649,11 +1651,14 @@
       <div class="about-photo-wrap reveal-left">
         <div class="about-photo-frame">
           <div class="about-photo">
-            <img
-              src="photo-jacqui-1.jpg"
-              alt="Jacqui McGregor - Counsellor and Coach"
-              loading="lazy"
-            >
+            <video
+              src="jacqui-about-video.mp4"
+              controls
+              playsinline
+              preload="metadata"
+              poster="photo-jacqui-1.jpg"
+              aria-label="Jacqui McGregor - Welcome message"
+            ></video>
           </div>
         </div>
         <!-- Badge -->
