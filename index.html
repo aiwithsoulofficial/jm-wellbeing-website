@@ -1447,6 +1447,29 @@
     }
     .footer-copy a { color: rgba(196,168,126,0.5); transition: color 0.3s; }
     .footer-copy a:hover { color: var(--gold); }
+    .footer-credentials {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      padding-top: 32px;
+      margin-top: 32px;
+      border-top: 1px solid rgba(247,243,237,0.08);
+    }
+    .footer-credentials img {
+      height: 48px;
+      width: auto;
+      opacity: 0.7;
+      border-radius: 4px;
+    }
+    .footer-credentials p {
+      font-family: 'Work Sans', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 300;
+      color: rgba(247,243,237,0.4);
+      line-height: 1.6;
+    }
     @media (max-width: 768px) {
       .footer-inner { flex-direction: column; align-items: flex-start; padding: 0 24px; }
       .footer-copy { text-align: left; }
@@ -2093,6 +2116,10 @@
     <div class="footer-copy">
       &copy; 2026 Jacqui McGregor Wellbeing<br>
       <a href="mailto:info@jmwellbeing.com.au">info@jmwellbeing.com.au</a>
+    </div>
+    <div class="footer-credentials">
+      <img src="cpc-badge.png" alt="Certified Practising Counsellor">
+      <p>Certified Practising Counsellor<br>ICF PCC Level Coach | PACFA #21402</p>
     </div>
   </div>
 </footer>
